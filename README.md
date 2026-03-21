@@ -6,7 +6,7 @@
 <div align="center">
 
 <img src="https://avatars.githubusercontent.com/u/89724864?s=400&v=4" width="150" style="border-radius: 50%;" alt="TeamCyberOps Logo" />
-<img src="https://readme-typing-svg.herokuapp.com?font=monospace&weight=200&size=40&duration=3000&pause=1000&color=000000&background=00000000&center=true&vCenter=true&width=900&lines=TeamCyberOps+Suite+v4.0;61+Tab+Offensive+Framework;AI+Auto-Exploit+Engine;for+Bugbounty+Hunter;" alt="Typing Header" />
+<img src="https://readme-typing-svg.herokuapp.com?font=monospace&weight=200&size=40&duration=3000&pause=1000&color=4A4A4A&background=00000000&center=true&vCenter=true&width=900&lines=TeamCyberOps+Suite+v4.0;61+Tab+Offensive+Framework;AI+Auto-Exploit+Engine;for+Bugbounty+Hunter;" alt="Typing Header" />
 
 <br>
 
