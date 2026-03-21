@@ -6,25 +6,25 @@
 <div align="center">
 
 <img src="https://avatars.githubusercontent.com/u/89724864?s=400&v=4" width="150" style="border-radius: 50%;" alt="TeamCyberOps Logo" />
-<img src="https://readme-typing-svg.herokuapp.com?font=monospace&weight=200&size=40&duration=3000&pause=1000&color=00f5ff&background=00000000&center=true&vCenter=true&width=900&lines=TeamCyberOps+Suite+v4.0;61+Tab+Offensive+Framework;AI+Auto-Exploit+Engine;Cyberpunk+Dark+Theme" alt="Typing Header" />
+<img src="https://readme-typing-svg.herokuapp.com?font=monospace&weight=200&size=40&duration=3000&pause=1000&color=000000&background=00000000&center=true&vCenter=true&width=900&lines=TeamCyberOps+Suite+v4.0;61+Tab+Offensive+Framework;AI+Auto-Exploit+Engine;for+Bugbounty+Hunter;" alt="Typing Header" />
 
 <br>
 
 **Professional Offensive Security & Advanced Reconnaissance Platform**
 
 <p align="center">
-  <img src="https://img.shields.io/badge/SYSTEM-ONLINE-000?style=for-the-badge&logo=linux&logoColor=00f5ff&labelColor=050810&color=00f5ff">
-  <img src="https://img.shields.io/badge/TABS-61-000?style=for-the-badge&logo=kali-linux&logoColor=00ff88&labelColor=050810&color=00ff88">
-  <img src="https://img.shields.io/badge/AI-AUTO--EXPLOIT-000?style=for-the-badge&logo=anthropic&logoColor=bf5af2&labelColor=050810&color=bf5af2">
-  <img src="https://img.shields.io/badge/THEME-CYBERPUNK-000?style=for-the-badge&logo=github&logoColor=00f5ff&labelColor=050810&color=ff2d55">
+  <img src="https://img.shields.io/badge/SYSTEM-ONLINE-000?style=for-the-badge&logo=linux&logoColor=ffffff&labelColor=000000&color=000000">
+  <img src="https://img.shields.io/badge/TABS-61-000?style=for-the-badge&logo=kali-linux&logoColor=ffffff&labelColor=000000&color=000000">
+  <img src="https://img.shields.io/badge/AI-AUTO--EXPLOIT-000?style=for-the-badge&logo=anthropic&logoColor=ffffff&labelColor=000000&color=000000">
+  <img src="https://img.shields.io/badge/THEME-STEALTH-000?style=for-the-badge&logo=github&logoColor=ffffff&labelColor=000000&color=000000">
 </p>
 
-![Code](https://img.shields.io/badge/Code-17%2C400%2B%20Lines-050810?style=flat-square&color=00f5ff)
-![Tabs](https://img.shields.io/badge/Tabs-61-050810?style=flat-square&color=00ff88)
-![Oneliners](https://img.shields.io/badge/Oneliners-239-050810?style=flat-square&color=ffd60a)
-![Modules](https://img.shields.io/badge/Modules-32-050810?style=flat-square&color=bf5af2)
-![Power](https://img.shields.io/badge/POWER_Tabs-16-050810?style=flat-square&color=ff2d55)
-![Status](https://img.shields.io/badge/Status-Production%20Ready-050810?style=flat-square&color=00ff88)
+![Code](https://img.shields.io/badge/Code-17%2C400%2B%20Lines-050810?style=flat-square&color=000000)
+![Tabs](https://img.shields.io/badge/Tabs-61-050810?style=flat-square&color=000000)
+![Oneliners](https://img.shields.io/badge/Oneliners-239-050810?style=flat-square&color=000000)
+![Modules](https://img.shields.io/badge/Modules-32-050810?style=flat-square&color=000000)
+![Power](https://img.shields.io/badge/POWER_Tabs-16-050810?style=flat-square&color=000000)
+![Status](https://img.shields.io/badge/Status-Production%20Ready-050810?style=flat-square&color=000000)
 
 </div>
 
@@ -47,12 +47,12 @@
 ```
 ╔══════════════════════════════════════════════════════════════════════╗
 ║                                                                      ║
-║        ⬡  T E A M C Y B E R O P S   S U I T E   v 4 . 0           ║
+║        ⬡  T E A M C Y B E R O P S   S U I T E   v 4 . 0              ║
 ║                                                                      ║
-║   61 Tabs  ·  239 Oneliners  ·  16 POWER Modules  ·  AI Exploit     ║
-║   Cyberpunk #050810  ·  Electric Cyan #00f5ff  ·  Matrix #00ff88    ║
+║   61 Tabs  ·  239 Oneliners  ·  16 POWER Modules  ·  AI Exploit      ║
+║   Cyberpunk #050810  ·  Electric Cyan #00f5ff  ·  Matrix #00ff88     ║
 ║   SSRF Suite  ·  2FA Bypass  ·  HTTP Smuggling  ·  Claude API        ║
-║   Kali Wordlists  ·  Windows + Linux + macOS  ·  Python 3.9+        ║
+║   Kali Wordlists  ·  Windows + Linux + macOS  ·  Python 3.9+         ║
 ║                                                                      ║
 ╚══════════════════════════════════════════════════════════════════════╝
 ```
@@ -395,7 +395,7 @@ git clone https://github.com/projectdiscovery/nuclei-templates
 
 ## 📊 Stats
 
-```
+```JAVASCRIPT
 Version:          v4.0 (Fixed Edition)
 Lines of code:    17,400+
 Tabs:             61  (MAIN·RECON·SCAN·EXPLOIT·RESULTS·INTEL·AUTO·ADVANCED·POWER·AI·SYSTEM)
@@ -447,7 +447,7 @@ Needs API key:                   4 AI tabs + 1 Shodan
 
 ## 🏆 Elite Workflow
 
-```
+```js
 PHASE 1 — RECON
   1. Set project name (top bar)
   2. OSINT → Subdomain Intel + ASN/BGP
@@ -497,30 +497,30 @@ PHASE 6 — SUBMIT
   <tr>
     <td align="center">
       <a href="https://github.com/mohid0x01">
-        <img src="https://github.com/mohid0x01.png" width="100px;" style="border-radius:50%; border: 3px solid #00f5ff;"/><br/>
+        <img src="https://github.com/mohid0x01.png" width="100px;" style="border-radius:50%; border: 3px solid #000000;"/><br/>
         <sub><b>[r00t:~#]</b></sub><br/>
-        <img src="https://img.shields.io/badge/Lead_Developer-050810?style=flat-square&color=00f5ff">
+        <img src="https://img.shields.io/badge/Lead_Developer-050810?style=flat-square&color=000000">
       </a>
     </td>
     <td align="center">
       <a href="https://github.com/rehan-qx">
-        <img src="https://github.com/rehan-qx.png" width="100px;" style="border-radius:50%; border: 3px solid #ff2d55;"/><br/>
+        <img src="https://github.com/rehan-qx.png" width="100px;" style="border-radius:50%; border: 3px solid #000000;"/><br/>
         <sub><b>n1xr00t</b></sub><br/>
-        <img src="https://img.shields.io/badge/Elite_Bug_Hunter-050810?style=flat-square&color=ff2d55">
+        <img src="https://img.shields.io/badge/Elite_Bug_Hunter-050810?style=flat-square&color=000000">
       </a>
     </td>
     <td align="center">
       <a href="https://github.com/Bahawal-Ali-Official">
-        <img src="https://github.com/Bahawal-Ali-Official.png" width="100px;" style="border-radius:50%; border: 3px solid #ff9f0a;"/><br/>
+        <img src="https://github.com/Bahawal-Ali-Official.png" width="100px;" style="border-radius:50%; border: 3px solid #000000;"/><br/>
         <sub><b>zero_trst</b></sub><br/>
-        <img src="https://img.shields.io/badge/Exploit_Architect-050810?style=flat-square&color=ff9f0a">
+        <img src="https://img.shields.io/badge/Exploit_Architect-050810?style=flat-square&color=000000">
       </a>
     </td>
     <td align="center">
       <a href="https://github.com/muhammadtaharana">
-        <img src="https://avatars.githubusercontent.com/u/250719509?v=4" width="100px;" style="border-radius:50%; border: 3px solid #00f5ff;"/><br/>
+        <img src="https://avatars.githubusercontent.com/u/250719509?v=4" width="100px;" style="border-radius:50%; border: 3px solid #000000;"/><br/>
         <sub><b>2.0²·⁰</b></sub><br/>
-        <img src="https://img.shields.io/badge/Network_Ghost-050810?style=flat-square&color=00f5ff">
+        <img src="https://img.shields.io/badge/Network_Ghost-050810?style=flat-square&color=000000">
       </a>
     </td>
   </tr>
@@ -528,10 +528,10 @@ PHASE 6 — SUBMIT
 
 **© 2026 TeamCyberOps. Professional Security Suite.**
 
-![Build](https://img.shields.io/badge/Build-Passing-050810?style=flat-square&color=00ff88)
-![Version](https://img.shields.io/badge/Version-v4.0_Fixed-050810?style=flat-square&color=00f5ff)
-![Theme](https://img.shields.io/badge/Theme-Cyberpunk_Dark-050810?style=flat-square&color=ff2d55)
-![AI](https://img.shields.io/badge/AI-Claude_Powered-050810?style=flat-square&color=bf5af2)
-![Status](https://img.shields.io/badge/Status-Production%20Ready-050810?style=flat-square&color=00ff88)
+![Build](https://img.shields.io/badge/Build-Passing-050810?style=flat-square&color=000000)
+![Version](https://img.shields.io/badge/Version-v4.0_Fixed-050810?style=flat-square&color=000000)
+![Theme](https://img.shields.io/badge/Theme-Cyberpunk_Dark-050810?style=flat-square&color=000000)
+![AI](https://img.shields.io/badge/AI-Claude_Powered-050810?style=flat-square&color=000000)
+![Status](https://img.shields.io/badge/Status-Production%20Ready-050810?style=flat-square&color=000000)
 
 </div>

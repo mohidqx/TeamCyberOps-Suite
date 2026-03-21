@@ -1,0 +1,27 @@
+# Nmap 7.98 scan initiated Mon Mar 16 19:57:42 2026 as: /usr/lib/nmap/nmap --privileged -sV -sC -T4 --open -p 21,22,23,25,53,80,110,143,443,445,993,995,3306,3389,5432,5900,6379,8080,8443,8888,9200,27017 -oN /mnt/c/Users/User/Desktop/TeamCyberOps_v2/TeamCyberOps/logs/marionnaud.fr/nmap_service-newsletter.marionnaud.fr.txt service-newsletter.marionnaud.fr
+Nmap scan report for service-newsletter.marionnaud.fr (213.152.23.72)
+Host is up (0.17s latency).
+Other addresses for service-newsletter.marionnaud.fr (not scanned): 77.72.92.17
+Not shown: 19 filtered tcp ports (no-response)
+Some closed ports may be reported as filtered due to --defeat-rst-ratelimit
+PORT     STATE SERVICE        VERSION
+80/tcp   open  http-proxy     HAProxy http proxy 2.0.0 or later
+|_http-title: Did not follow redirect to https://service-newsletter.marionnaud.fr/
+|_http-open-proxy: Proxy might be redirecting requests
+443/tcp  open  tcpwrapped
+|_ssl-date: TLS randomness does not represent time
+| ssl-cert: Subject: commonName=*.marionnaud.fr
+| Subject Alternative Name: DNS:*.marionnaud.fr
+| Not valid before: 2026-02-27T11:55:19
+|_Not valid after:  2026-05-28T11:55:18
+|_http-title: Site doesn't have a title (text/html).
+8443/tcp open  ssl/https-alt?
+| ssl-cert: Subject: commonName=*.marionnaud.com
+| Subject Alternative Name: DNS:*.marionnaud.com, DNS:marionnaud.com
+| Not valid before: 2018-10-17T00:00:00
+|_Not valid after:  2020-09-05T12:00:00
+|_ssl-date: TLS randomness does not represent time
+Service Info: Device: load balancer
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+# Nmap done at Mon Mar 16 19:58:32 2026 -- 1 IP address (1 host up) scanned in 49.49 seconds
