@@ -1,0 +1,87 @@
+{
+  "https://mta-sts.iciparisxl.nl": [
+    "404",
+    "Amazon CloudFront,Amazon S3,Amazon Web Services,HSTS"
+  ],
+  "https://folders.iciparisxl.nl": [
+    "302,200",
+    "ICIPARISXL-NL - FOLDER_VALENTIJN_ONLINE_WEEK6-7 - Pagina 1",
+    "Amazon ALB,Amazon CloudFront,Amazon Web Services,HSTS,Nginx"
+  ],
+  "https://ecom-data.iciparisxl.nl": [
+    "400",
+    "Google Cloud,Google Cloud Load Balancing,Google Cloud Trace"
+  ],
+  "https://www.shopping.iciparisxl.nl": [
+    "200",
+    "Telenet parking page for hosting products"
+  ],
+  "https://newsletter.iciparisxl.nl": [
+    "403",
+    "403 - Forbidden: Access is denied.",
+    "IIS:7.5,Microsoft ASP.NET,Windows Server"
+  ],
+  "https://beauty-and-you.iciparisxl.nl": [
+    "302,200",
+    "Beauty & You NL - Beauty&You Eindejaar - Pagina 1",
+    "Amazon ALB,Amazon CloudFront,Amazon Web Services,HSTS,Nginx"
+  ],
+  "https://facebook-app.iciparisxl.nl": [
+    "302,404",
+    "HSTS,HTTP/3"
+  ],
+  "https://edition.iciparisxl.nl": [
+    "302,200",
+    "EDITION - pdf_howtodetox - Pagina 1",
+    "Amazon ALB,Amazon CloudFront,Amazon Web Services,HSTS,Nginx"
+  ],
+  "https://mta-sts.newsletters.iciparisxl.nl": [
+    "404",
+    "Amazon CloudFront,Amazon S3,Amazon Web Services,HSTS"
+  ],
+  "https://shopping.iciparisxl.nl": [
+    "200",
+    "Telenet parking page for hosting products"
+  ],
+  "https://folder.iciparisxl.nl": [
+    "302,200",
+    "ICI PARIS XL NL - ICI PARIS XL NL week 12 2026 - Pagina 1",
+    "Amazon ALB,Amazon CloudFront,Amazon Web Services,Getsitecontrol,HSTS,Nginx"
+  ],
+  "https://www2.iciparisxl.nl": [
+    "Configuration Error",
+    "IIS:7.5,Microsoft ASP.NET,Windows Server"
+  ],
+  "https://newsletter-feedback.iciparisxl.nl": [
+    "Configuration Error",
+    "IIS:7.5,Microsoft ASP.NET:4.0.30319,Windows Server"
+  ],
+  "https://mta-sts.klantenservice.iciparisxl.nl": [
+    "404",
+    "Amazon CloudFront,Amazon S3,Amazon Web Services,HSTS"
+  ],
+  "https://m.newsletters.iciparisxl.nl": [
+    "302,302,302,302,302,302,302,302,302,302",
+    "302 Found",
+    "Apache HTTP Server"
+  ],
+  "http://media.iciparisxl.nl": [
+    "404",
+    "Akamai,Akamai Bot Manager"
+  ],
+  "http://www-s1.iciparisxl.nl": [
+    "403",
+    "Error",
+    "Akamai,Akamai Bot Manager"
+  ],
+  "http://res.newsletters.iciparisxl.nl": [
+    "302,302,302,302,302,302,302,302,302,302",
+    "302 Found",
+    "Apache HTTP Server"
+  ],
+  "http://t.newsletters.iciparisxl.nl": [
+    "302,302,302,302,302,302,302,302,302,302",
+    "302 Found",
+    "Apache HTTP Server"
+  ]
+}

@@ -1,0 +1,22 @@
+[
+  {
+    "id": "2e7ac3d3",
+    "target": "industours.vercel.app",
+    "interval": 24,
+    "checks": [
+      "subdomains",
+      "http_status",
+      "tech_stack",
+      "js_files"
+    ],
+    "enabled": true,
+    "created": "2026-03-16T14:39:18.118137",
+    "last_scan": null,
+    "baseline": {
+      "subdomains": [],
+      "subdomain_count": 0,
+      "timestamp": "2026-03-16T14:39:26.909583"
+    },
+    "changes": []
+  }
+]

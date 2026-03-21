@@ -1,0 +1,72 @@
+{
+  "app_name": "TeamCyberOps Suite v1",
+  "version": "1.0.0",
+  "api_keys": {
+    "shodan": "",
+    "censys_id": "",
+    "censys_secret": "",
+    "virustotal": "",
+    "securitytrails": "",
+    "anthropic_api_key": "",
+    "gemini_api_key": ""
+  },
+  "notify": {
+    "slack_webhook": "",
+    "discord_webhook": "",
+    "email": {
+      "smtp_host": "smtp.gmail.com",
+      "smtp_port": 587,
+      "username": "",
+      "password": "",
+      "recipient": ""
+    }
+  },
+  "proxy": {
+    "enabled": false,
+    "type": "http",
+    "host": "127.0.0.1",
+    "port": 8080,
+    "burp_enabled": false,
+    "burp_host": "127.0.0.1",
+    "burp_port": 8080
+  },
+  "vpn": {
+    "enabled": false,
+    "config_path": "",
+    "interface": "tun0"
+  },
+  "tools": {
+    "subfinder": "subfinder",
+    "amass": "amass",
+    "assetfinder": "assetfinder",
+    "nmap": "nmap",
+    "masscan": "masscan",
+    "rustscan": "rustscan",
+    "ffuf": "ffuf",
+    "gobuster": "gobuster",
+    "dirsearch": "dirsearch",
+    "theharvester": "theHarvester",
+    "httpx": "httpx",
+    "nuclei": "nuclei",
+    "dalfox": "dalfox",
+    "sqlmap": "sqlmap",
+    "spyhunt": "spyhunt",
+    "gowitness": "gowitness"
+  },
+  "wordlists": {
+    "directories": "/home/claude/TeamCyberOps/TeamCyberOps/wordlists/directories.txt",
+    "subdomains": "/home/claude/TeamCyberOps/TeamCyberOps/wordlists/subdomains.txt",
+    "passwords": "/home/claude/TeamCyberOps/TeamCyberOps/wordlists/passwords.txt",
+    "params": "/home/claude/TeamCyberOps/TeamCyberOps/wordlists/parameters.txt",
+    "api": "/home/claude/TeamCyberOps/TeamCyberOps/wordlists/api_endpoints.txt",
+    "xss": "/home/claude/TeamCyberOps/TeamCyberOps/wordlists/xss_payloads.txt",
+    "sqli": "/home/claude/TeamCyberOps/TeamCyberOps/wordlists/sqli_payloads.txt",
+    "lfi": "/home/claude/TeamCyberOps/TeamCyberOps/wordlists/lfi_paths.txt"
+  },
+  "report": {
+    "author": "TeamCyberOps",
+    "company": "TeamCyberOps Security",
+    "logo_path": ""
+  },
+  "theme": "dark"
+}

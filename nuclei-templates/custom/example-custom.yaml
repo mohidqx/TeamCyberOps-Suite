@@ -1,0 +1,18 @@
+# Example custom template — replace with your own
+id: example-custom-check
+
+info:
+  name: Example Custom Check
+  author: TeamCyberOps
+  severity: info
+  description: Replace this with your actual check
+  tags: custom,example
+
+http:
+  - method: GET
+    path:
+      - "{{BaseURL}}"
+    matchers:
+      - type: status
+        status:
+          - 200

@@ -1,0 +1,20 @@
+{
+  "users": [
+    {
+      "username": "admin",
+      "password": "8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918",
+      "role": "admin",
+      "email": "admin@teamcyberops.local",
+      "created": "2025-03-14",
+      "active": true
+    },
+    {
+      "username": "hunter1",
+      "password": "8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918",
+      "role": "member",
+      "email": "hunter1@teamcyberops.local",
+      "created": "2025-03-14",
+      "active": true
+    }
+  ]
+}

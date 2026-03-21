@@ -1,0 +1,25 @@
+[2026-03-14 17:25:24] LOGIN | user=admin
+[2026-03-14 17:26:07] LOGIN | user=admin
+[2026-03-14 17:33:28] LOGIN | user=admin
+[2026-03-14 17:34:18] LOGIN | user=admin
+[2026-03-14 17:38:38] LOGIN | user=admin
+[2026-03-14 18:05:37] LOGIN | user=admin
+[2026-03-16 00:24:17] LOGIN | user=admin | role=admin
+[2026-03-16 12:05:58] LOGIN | user=admin | role=admin
+[2026-03-16 12:06:13] EXIT | user=admin
+[2026-03-16 12:22:04] LOGIN | user=admin | role=admin
+[2026-03-16 12:49:51] LOGIN | user=admin | role=admin
+[2026-03-16 12:58:28] LOGIN | user=admin | role=admin
+[2026-03-16 13:35:53] EXIT | user=admin
+[2026-03-16 13:41:24] LOGIN | user=admin | role=admin
+[2026-03-16 14:00:47] LOGIN | user=admin | role=admin
+[2026-03-16 14:01:50] LOGIN | user=admin | role=admin
+[2026-03-16 14:08:45] EXIT | user=admin
+[2026-03-16 14:08:51] LOGIN | user=admin | role=admin
+[2026-03-16 14:09:29] LOGIN | user=admin | role=admin
+[2026-03-16 14:09:57] EXIT | user=admin
+[2026-03-16 14:43:25] EXIT | user=admin
+[2026-03-16 15:02:12] LOGIN | user=admin | role=admin
+[2026-03-16 15:14:53] EXIT | user=admin
+[2026-03-21 11:30:50] LOGIN | user=admin | role=admin
+[2026-03-21 11:30:56] EXIT | user=admin

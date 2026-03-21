@@ -1,0 +1,72 @@
+{
+  "findings": [
+    {
+      "id": "FIND-0001",
+      "title": "Reflected XSS in search parameter",
+      "url": "https://example.com/search?q=<script>alert(1)</script>",
+      "type": "XSS",
+      "severity": "HIGH",
+      "cvss_score": "7.4",
+      "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:H/I:N/A:N",
+      "description": "The search parameter is reflected without sanitization, allowing XSS.",
+      "poc": "1. Navigate to /search?q=<script>alert(document.cookie)</script>\n2. Cookie is alerted in browser",
+      "impact": "Attacker can steal session cookies and hijack accounts.",
+      "project": "iciparisxl.nl",
+      "tool": "Manual",
+      "status": "Open",
+      "timestamp": "2026-03-15T14:12:00.334440",
+      "screenshot": ""
+    },
+    {
+      "id": "FIND-0002",
+      "title": "SQL Injection in login form",
+      "url": "https://example.com/login",
+      "type": "SQLi",
+      "severity": "CRITICAL",
+      "cvss_score": "9.8",
+      "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+      "description": "The username field is vulnerable to SQL injection.",
+      "poc": "1. Enter: admin' OR '1'='1'-- in username field\n2. Any password works",
+      "impact": "Authentication bypass, full database read/write access.",
+      "project": "iciparisxl.nl",
+      "tool": "SQLMap",
+      "status": "Open",
+      "timestamp": "2026-03-15T14:12:00.334452",
+      "screenshot": ""
+    },
+    {
+      "id": "FIND-0003",
+      "title": "CORS Misconfiguration - Wildcard Origin",
+      "url": "https://api.example.com/user/profile",
+      "type": "CORS",
+      "severity": "MEDIUM",
+      "cvss_score": "5.3",
+      "cvss_vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:R/S:U/C:H/I:N/A:N",
+      "description": "API accepts requests from any origin with credentials.",
+      "poc": "curl -H 'Origin: https://evil.com' https://api.example.com/user/profile",
+      "impact": "Sensitive user data exposed to malicious sites.",
+      "project": "iciparisxl.nl",
+      "tool": "Manual",
+      "status": "Open",
+      "timestamp": "2026-03-15T14:12:00.334454",
+      "screenshot": ""
+    },
+    {
+      "id": "FIND-0004",
+      "title": "Subdomain Takeover - GitHub Pages",
+      "url": "https://staging.example.com",
+      "type": "Subdomain Takeover",
+      "severity": "HIGH",
+      "cvss_score": "8.1",
+      "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:N",
+      "description": "staging.example.com CNAME points to unclaimed GitHub Pages.",
+      "poc": "1. dig CNAME staging.example.com \u2192 username.github.io\n2. Repository not found",
+      "impact": "Phishing, credential harvesting under trusted domain.",
+      "project": "iciparisxl.nl",
+      "tool": "Subzy",
+      "status": "Open",
+      "timestamp": "2026-03-15T14:12:00.334456",
+      "screenshot": ""
+    }
+  ]
+}

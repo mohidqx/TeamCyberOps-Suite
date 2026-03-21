@@ -1,0 +1,9 @@
+# TeamCyberOps Suite v1 — Python Requirements
+# Install with: pip3 install -r requirements.txt --break-system-packages
+
+psutil          # System health panel (CPU, RAM, Disk)
+requests        # HTTP requests helper
+
+# Note: tkinter is built-in with Python 3 on Kali Linux
+# If missing: sudo apt install python3-tk
+Pillow
