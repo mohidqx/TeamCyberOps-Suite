@@ -1,0 +1,25 @@
+version: '3.9'
+
+services:
+  teamcyberops:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    image: teamcyberops:v5
+    container_name: teamcyberops_v5
+    network_mode: host
+    environment:
+      - DISPLAY=${DISPLAY:-:0}
+    volumes:
+      - ../db:/app/db
+      - ../logs:/app/logs
+      - ../reports:/app/reports
+      - ../screenshots:/app/screenshots
+      - ../wordlists:/app/wordlists
+      - /tmp/.X11-unix:/tmp/.X11-unix:rw
+    ports:
+      - "8877:8877"   # OAST HTTP
+      - "5353:5353"   # OAST DNS
+    stdin_open: true
+    tty: true
+    restart: unless-stopped
