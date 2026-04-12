@@ -24,7 +24,7 @@ FONT_MONO = (
     "Monospace"
 )
 FONT_BODY = (
-    "Segoe UI"   if _SYS == "Windows" else
+    "Segoe UI"    if _SYS == "Windows" else
     "SF Pro Text" if _SYS == "Darwin" else
     "Ubuntu"
 )

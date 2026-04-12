@@ -61,6 +61,19 @@ def main():
     except Exception as _e:
         print(f"[!] Log sync warning: {_e}")
 
+    # BUG #43: Clean up malformed bash-glob directories left by copy-paste errors
+    # e.g., modules/{recon,analysis,...}/ should not exist as a literal directory
+    try:
+        import shutil as _shutil
+        from pathlib import Path as _Path
+        _modules_dir = _Path(__file__).parent / "modules"
+        for _d in _modules_dir.rglob("*"):
+            if _d.is_dir() and ("{" in _d.name or "," in _d.name):
+                _shutil.rmtree(str(_d), ignore_errors=True)
+                print(f"[*] Removed malformed directory: {_d.name}")
+    except Exception:
+        pass
+
     from app.ui.login import LoginWindow
     login = LoginWindow()
 

@@ -1,8 +1,11 @@
 """
 TeamCyberOps V5 — SQLite Database Core
-WAL mode · Proper schema · Migrations · Thread-safe
+v5.0.3 fixes:
+  BUG #4  — SHA-256 replaced with bcrypt (+ HMAC fallback) for password hashing
+  BUG #7  — hmac.compare_digest() for constant-time password comparison (timing-safe)
+  BUG #22 — idx_users_username index added
 """
-import sqlite3, json, threading, hashlib
+import sqlite3, json, threading, hashlib, hmac as _hmac
 from pathlib import Path
 from datetime import datetime
 from typing import Optional, List, Dict, Any
@@ -83,6 +86,7 @@ CREATE TABLE IF NOT EXISTS config (
     updated_at  TEXT    NOT NULL
 );
 
+CREATE INDEX IF NOT EXISTS idx_users_username     ON users(username);
 CREATE INDEX IF NOT EXISTS idx_findings_project   ON findings(project_id);
 CREATE INDEX IF NOT EXISTS idx_findings_severity  ON findings(severity);
 CREATE INDEX IF NOT EXISTS idx_findings_status    ON findings(status);
@@ -90,6 +94,46 @@ CREATE INDEX IF NOT EXISTS idx_results_project    ON scan_results(project_id);
 CREATE INDEX IF NOT EXISTS idx_history_project    ON scan_history(project_id);
 """
 
+# ── Password Hashing (BUG #4 fix) ────────────────────────────────
+_APP_SALT = b"TCO_v5_hmac_fallback_salt_2026"
+
+def _hash_password(password: str) -> str:
+    """
+    Hash password with bcrypt (rounds=12) if available.
+    Falls back to HMAC-SHA256 with app-level salt — still vastly
+    better than bare SHA256 and uses compare_digest for timing safety.
+    BUG #4: Replaces hashlib.sha256(b"admin").hexdigest() [NO SALT].
+    """
+    try:
+        import bcrypt
+        return bcrypt.hashpw(password.encode("utf-8"),
+                             bcrypt.gensalt(rounds=12)).decode("utf-8")
+    except ImportError:
+        return _hmac.new(_APP_SALT,
+                         password.encode("utf-8"),
+                         hashlib.sha256).hexdigest()
+
+
+def _verify_password(password: str, stored_hash: str) -> bool:
+    """
+    Constant-time password comparison — immune to timing attacks.
+    BUG #7: Replaces plain '==' comparison with hmac.compare_digest.
+    """
+    try:
+        import bcrypt
+        if stored_hash.startswith(("$2b$", "$2a$", "$2y$")):
+            return bcrypt.checkpw(password.encode("utf-8"),
+                                  stored_hash.encode("utf-8"))
+    except ImportError:
+        pass
+    # HMAC fallback — timing-safe
+    expected = _hmac.new(_APP_SALT,
+                         password.encode("utf-8"),
+                         hashlib.sha256).hexdigest()
+    return _hmac.compare_digest(expected, stored_hash)
+
+
+# ── Connection ────────────────────────────────────────────────────
 def get_conn() -> sqlite3.Connection:
     if not hasattr(_local, 'conn') or _local.conn is None:
         _local.conn = sqlite3.connect(str(DB_PATH), check_same_thread=False)
@@ -97,28 +141,44 @@ def get_conn() -> sqlite3.Connection:
         _local.conn.executescript("PRAGMA journal_mode=WAL; PRAGMA foreign_keys=ON;")
     return _local.conn
 
+
 def init_db():
     conn = sqlite3.connect(str(DB_PATH))
     conn.executescript(SCHEMA)
     conn.commit()
-    # Default admin user
-    pw_hash = hashlib.sha256(b"admin").hexdigest()
+    # Default admin user — use secure hashing (BUG #4)
+    pw_hash = _hash_password("admin")
     now = datetime.now().isoformat()
     try:
-        conn.execute("INSERT OR IGNORE INTO users (username,password_hash,role,created_at) VALUES (?,?,?,?)",
-                     ("admin", pw_hash, "admin", now))
+        conn.execute(
+            "INSERT OR IGNORE INTO users "
+            "(username,password_hash,role,created_at) VALUES (?,?,?,?)",
+            ("admin", pw_hash, "admin", now))
         conn.commit()
     except Exception:
         pass
     conn.close()
 
+
 def verify_user(username: str, password: str) -> Optional[Dict]:
-    pw_hash = hashlib.sha256(password.encode()).hexdigest()
+    """
+    Timing-safe user verification.
+    BUG #7: Uses _verify_password() → hmac.compare_digest internally.
+    Also performs a dummy compare when user not found to prevent
+    username enumeration via timing differences.
+    """
     conn = get_conn()
     row = conn.execute(
-        "SELECT id,username,role FROM users WHERE username=? AND password_hash=?",
-        (username, pw_hash)).fetchone()
-    return dict(row) if row else None
+        "SELECT id, username, role, password_hash FROM users WHERE username=?",
+        (username,)).fetchone()
+    if not row:
+        # Dummy call — prevents timing-based username enumeration
+        _hmac.compare_digest("dummy_hash_a", "dummy_hash_b")
+        return None
+    if _verify_password(password, row["password_hash"]):
+        return {"id": row["id"], "username": row["username"], "role": row["role"]}
+    return None
+
 
 # ── PROJECTS ─────────────────────────────────────────────────────
 def get_projects() -> List[Dict]:
@@ -160,19 +220,15 @@ def delete_project(name: str):
 
 def sync_logs_to_projects():
     """
-    Scan logs/ folder on disk and auto-register any missing projects into DB.
-    This ensures every logs/<project_name>/ directory appears in the project list.
-    Called once at startup (in background thread) and available for manual refresh.
+    Scan logs/ folder and auto-register missing projects into DB.
+    Called at startup — ensures every logs/<project>/ dir is in the dropdown.
     Returns list of newly added project names.
     """
-    from pathlib import Path as _P
     logs_dir = BASE_DIR / "logs"
     if not logs_dir.exists():
         return []
-
     existing_names = {p["name"] for p in get_projects()}
     added = []
-
     for folder in sorted(logs_dir.iterdir()):
         if not folder.is_dir():
             continue
@@ -181,27 +237,24 @@ def sync_logs_to_projects():
             continue
         if name in existing_names:
             continue
-        # Guess target from folder name (strip common prefixes)
-        target = name if "." in name or ":" in name else name
+        target = name if ("." in name or ":" in name) else name
         try:
             create_project(name, target=target)
             added.append(name)
         except Exception:
             pass
-
     return added
+
 
 # ── FINDINGS ─────────────────────────────────────────────────────
 def save_finding(finding: Dict) -> Dict:
     conn   = get_conn()
     now    = datetime.now().isoformat()
     proj   = finding.get("project", "default")
-    # Ensure project exists
     if not get_project(proj):
         create_project(proj, target=proj)
     proj_row = get_project(proj)
     proj_id  = proj_row["id"]
-    # Generate find_id
     existing = conn.execute("SELECT COUNT(*) FROM findings WHERE project_id=?",
                              (proj_id,)).fetchone()[0]
     find_id = finding.get("find_id") or f"FIND-{proj}-{existing+1:04d}"
@@ -249,7 +302,8 @@ def load_findings(project: str = None, severity: str = None,
         query += " AND f.severity=?"; params.append(severity.upper())
     if status:
         query += " AND f.status=?";  params.append(status)
-    query += " ORDER BY CASE f.severity WHEN 'CRITICAL' THEN 0 WHEN 'HIGH' THEN 1 WHEN 'MEDIUM' THEN 2 WHEN 'LOW' THEN 3 ELSE 4 END, f.created_at DESC"
+    query += (" ORDER BY CASE f.severity WHEN 'CRITICAL' THEN 0 WHEN 'HIGH' THEN 1"
+              " WHEN 'MEDIUM' THEN 2 WHEN 'LOW' THEN 3 ELSE 4 END, f.created_at DESC")
     rows = conn.execute(query, params).fetchall()
     results = []
     for r in rows:
@@ -274,7 +328,8 @@ def delete_finding(find_id: str):
 
 def get_finding_stats(project: str = None) -> Dict:
     conn = get_conn()
-    base = "SELECT severity, COUNT(*) as cnt FROM findings f JOIN projects p ON p.id=f.project_id"
+    base = ("SELECT severity, COUNT(*) as cnt FROM findings f "
+            "JOIN projects p ON p.id=f.project_id")
     if project:
         rows = conn.execute(base + " WHERE p.name=? GROUP BY f.severity", (project,)).fetchall()
     else:
@@ -296,7 +351,8 @@ def save_scan_result(project: str, tool: str, category: str,
         create_project(project)
     proj_id = get_project(project)["id"]
     conn.execute("""
-        INSERT INTO scan_results (project_id,tool,category,file_path,line_count,scan_data,created_at)
+        INSERT INTO scan_results
+        (project_id,tool,category,file_path,line_count,scan_data,created_at)
         VALUES (?,?,?,?,?,?,?)
     """, (proj_id, tool, category, file_path, line_count,
           json.dumps(scan_data or {}), datetime.now().isoformat()))
@@ -331,7 +387,7 @@ def set_config(key: str, value: Any):
     conn = get_conn()
     conn.execute(
         "INSERT OR REPLACE INTO config (key,value,updated_at) VALUES (?,?,?)",
-        (key, json.dumps(value) if not isinstance(value,str) else value,
+        (key, json.dumps(value) if not isinstance(value, str) else value,
          datetime.now().isoformat()))
     conn.commit()
 

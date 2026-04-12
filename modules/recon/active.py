@@ -3,10 +3,12 @@ TeamCyberOps Suite v4 — Active Recon Module (Production Grade)
 Port Scanning · Directory Fuzzing · Tech Detection · Screenshot capture
 All tools have Python fallbacks — works on Windows/Linux/macOS
 """
-import json, subprocess, urllib.request, urllib.parse, re, socket, ssl
+# BUG #31 fix: removed unused 'ssl' import
+import json, subprocess, urllib.request, urllib.parse, re, socket
 import threading, concurrent.futures, os, time
 from pathlib import Path
 from datetime import datetime
+from functools import lru_cache  # BUG #27 fix: cache tool availability
 
 BASE_DIR = Path(__file__).parent.parent.parent
 CFG_PATH = BASE_DIR / "config.json"
@@ -17,14 +19,27 @@ def _cfg():
         with open(CFG_PATH) as f: return json.load(f)
     except Exception: return {}
 
+@lru_cache(maxsize=64)
 def _tool_exists(name):
-    import shutil; return shutil.which(name) is not None
+    """BUG #27: Cache tool availability — avoids repeated shutil.which() calls."""
+    import shutil
+    return shutil.which(name) is not None
 
 def _run(cmd, timeout=180):
+    """BUG #37: Always uses list form (shell=False) — no shell injection risk."""
     try:
-        r = subprocess.run(cmd, capture_output=True, text=True, timeout=timeout)
+        # Ensure cmd is always a list — never a string to avoid shell injection
+        if isinstance(cmd, str):
+            cmd = cmd.split()
+        r = subprocess.run(cmd, capture_output=True, text=True,
+                           timeout=timeout, shell=False)
         return r.stdout
-    except Exception: return ""
+    except subprocess.TimeoutExpired:
+        return ""
+    except (FileNotFoundError, OSError):
+        return ""
+    except Exception:
+        return ""
 
 def _save(project, filename, content):
     d = LOGS_DIR / project; d.mkdir(parents=True, exist_ok=True)

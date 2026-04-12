@@ -31,17 +31,24 @@ def _save(project, filename, content):
     (d / filename).write_text(content if isinstance(content,str) else '\n'.join(content))
 
 def _req(url, method="GET", data=None, headers=None, timeout=10):
-    h = {"User-Agent":"Mozilla/5.0 (TeamCyberOps/4)",**(headers or {})}
+    """BUG #11 fix: response always closed via context manager (with statement)."""
+    h = {"User-Agent":"Mozilla/5.0 (TeamCyberOps/5)",**(headers or {})}
     try:
         body = json.dumps(data).encode() if data else None
         req = urllib.request.Request(url, data=body, headers=h, method=method)
+        # Context manager guarantees response.close() on all exit paths
         with urllib.request.urlopen(req, timeout=timeout) as r:
-            return {"status":r.status,"body":r.read(5000).decode("utf-8","replace"),
+            return {"status":r.status,
+                    "body":r.read(5000).decode("utf-8","replace"),
                     "headers":dict(r.headers),"ok":True}
     except urllib.error.HTTPError as e:
-        return {"status":e.code,"body":e.read(500).decode("utf-8","replace"),
+        body_bytes = b""
+        try: body_bytes = e.read(500)
+        except Exception: pass
+        return {"status":e.code,
+                "body":body_bytes.decode("utf-8","replace"),
                 "headers":dict(e.headers),"ok":False}
-    except Exception as ex:
+    except (urllib.error.URLError, socket.timeout, OSError) as ex:
         return {"status":None,"error":str(ex),"body":"","ok":False}
 
 # ── NUCLEI ───────────────────────────────────────────────────────

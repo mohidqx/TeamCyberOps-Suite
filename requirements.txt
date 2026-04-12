@@ -1,4 +1,45 @@
+# TeamCyberOps v5 — Python Dependencies
+# Python 3.9+ required
+# Install: pip install -r requirements.txt
+# Windows: pip install -r requirements.txt --break-system-packages
+
+# ── Core UI ────────────────────────────────────────────────────────
 customtkinter>=5.2.0
 Pillow>=10.0.0
+
+# ── Networking & HTTP ──────────────────────────────────────────────
 requests>=2.31.0
+urllib3>=2.0.0
+
+# ── System ─────────────────────────────────────────────────────────
 psutil>=5.9.0
+
+# ── Security: Password Hashing (BUG #4/#29/#44 fix) ───────────────
+# bcrypt replaces bare SHA-256 for password storage
+# If not installed, HMAC-SHA256 fallback is used automatically
+bcrypt>=4.0.0
+
+# ── System Dependencies (not pip-installable) ─────────────────────
+# Linux:   sudo apt install python3-tk
+# macOS:   brew install python-tk  (or included with python.org installer)
+# Windows: tkinter is bundled with the Python installer
+
+# ── Optional External Tools (install separately for full functionality) ──
+# All tools have Python fallbacks — none are required to run
+#
+# Go tools (go install ...@latest):
+#   subfinder   github.com/projectdiscovery/subfinder/v2/cmd/subfinder
+#   httpx       github.com/projectdiscovery/httpx/cmd/httpx
+#   nuclei      github.com/projectdiscovery/nuclei/v3/cmd/nuclei
+#   katana      github.com/projectdiscovery/katana/cmd/katana
+#   dnsx        github.com/projectdiscovery/dnsx/cmd/dnsx
+#   gau         github.com/lc/gau/v2/cmd/gau
+#   dalfox      github.com/hahwul/dalfox/v2
+#   ffuf        github.com/ffuf/ffuf/v2
+#   waybackurls github.com/tomnomnom/waybackurls
+#
+# System packages (apt/brew/choco):
+#   nmap        apt install nmap
+#   nikto       apt install nikto
+#   sqlmap      apt install sqlmap
+#   tor         apt install tor (for Tor Recon tab)

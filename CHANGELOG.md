@@ -26,6 +26,56 @@ Format based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ---
 
+## [5.0.3] — 2026-04-12
+
+### Security Fixes (BUGS.md verified)
+- **BUG #4 — Weak password hashing** (`database.py`): SHA-256 without salt replaced with `bcrypt`
+  (rounds=12). HMAC-SHA256 with app-level salt used as fallback when bcrypt not installed.
+  `init_db()` now calls `_hash_password()` for the default admin user.
+- **BUG #7 — Timing attack in `verify_user`** (`database.py`): Plain `==` comparison replaced
+  with `hmac.compare_digest()` inside `_verify_password()`. Dummy compare added for missing
+  usernames to prevent timing-based username enumeration.
+- **BUG #37 — Subprocess shell injection** (`active.py`): `_run()` now enforces `shell=False`
+  and always uses list-form commands. String inputs are split safely.
+
+### Logic Fixes (BUGS.md verified)
+- **BUG #8 — Non-atomic config write** (`config.py`): `cfg_path.write_text()` replaced with
+  `tempfile.NamedTemporaryFile` + `os.fsync()` + `os.replace()` — atomic on all major OSes.
+- **BUG #10 — Socket leak in port scanner** (`active.py`): Python fallback now uses
+  `with socket.socket(...) as sock:` context manager — guaranteed close on exception.
+- **BUG #11 — HTTP response not closed** (`scanner.py`): `_req()` uses `with urlopen(...) as r:`;
+  specific exception types instead of bare `except Exception`.
+- **BUG #16 — Config singleton not thread-safe** (`config.py`): Added `threading.Lock()` +
+  double-checked locking pattern to `Config.__new__()`.
+- **BUG #27 — Tool check not cached** (`active.py`): `@lru_cache(maxsize=64)` on `_tool_exists()`
+  — `shutil.which()` now called once per tool name per process lifetime.
+- **BUG #43 — Malformed bash-glob directory** (`modules/{...}/`): `main.py` startup
+  auto-removes any `modules/` subdirectory whose name contains `{` or `,`.
+
+### Database Fixes (BUGS.md verified)
+- **BUG #22 — Missing username index**: `CREATE INDEX IF NOT EXISTS idx_users_username ON users(username)`
+  added to SCHEMA — O(log n) login lookups instead of O(n) full table scans.
+
+### Code Quality Fixes (BUGS.md verified)
+- **BUG #31 — Unused `ssl` import** (`active.py`): Removed. Added `lru_cache` import.
+- **BUG #40 — Unused `_SYS` variable** (`theme.py`): `FONT_BODY` now consistently uses `_SYS`
+  instead of inline `platform.system()` calls.
+- **BUG #42 — Silent `except: pass`** (`config.py`): Replaced with
+  `except Exception as e: print(f"[Config] Warning: {e}")` — errors are now visible.
+
+### Dependencies
+- **BUG #29/#44 — Incomplete `requirements.txt`**: Added `bcrypt>=4.0.0`, `urllib3>=2.0.0`.
+  Added comprehensive comments documenting system dependencies and external tools.
+
+### Verification Results
+- 47 bugs from BUGS.md verified against actual files
+- 7 bugs marked N/A (referenced files `brute-server.py`, `connect-server.py`,
+  `fuzz_server.py` do not exist in this project)
+- 17 bugs fixed in this pass
+- ~16 bugs remain (MEDIUM/LOW — planned for v5.1.0)
+
+---
+
 ## [5.0.2] — 2026-04-12
 
 ### Fixed

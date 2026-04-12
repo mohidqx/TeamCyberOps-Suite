@@ -1,7 +1,11 @@
 """
 TeamCyberOps V5 — Config Manager
-Single source of truth for all settings
+v5.0.3 fixes:
+  BUG #8  — Atomic config.json write via tempfile + os.replace()
+  BUG #16 — Thread-safe singleton with threading.Lock()
+  BUG #42 — Silent bare 'except: pass' replaced with logged errors
 """
+import os, tempfile
 from pathlib import Path
 from app.core.database import get_config, set_config, get_all_config
 
@@ -75,12 +79,17 @@ DEFAULTS = {
 class Config:
     """Single config instance — loads from DB with defaults fallback."""
     _instance = None
+    _lock = __import__('threading').Lock()  # BUG #16: thread-safe singleton
 
     def __new__(cls):
+        # Double-checked locking pattern (thread-safe)
         if cls._instance is None:
-            cls._instance = super().__new__(cls)
-            cls._instance._cache = {}
-            cls._instance._load()
+            with cls._lock:
+                if cls._instance is None:
+                    inst = super().__new__(cls)
+                    inst._cache = {}
+                    inst._load()
+                    cls._instance = inst
         return cls._instance
 
     def _load(self):
@@ -107,7 +116,7 @@ class Config:
         return self._cache.get(key, default)
 
     def set(self, key: str, value):
-        """Set config value and persist to DB + config.json."""
+        """Set config value and persist to DB + config.json (atomic write)."""
         if "." in key:
             parts = key.split(".", 1)
             if parts[0] not in self._cache:
@@ -117,7 +126,7 @@ class Config:
         else:
             self._cache[key] = value
         set_config(key, value)
-        # Keep config.json in sync for legacy modules
+        # BUG #8: Atomic write — write to tmp file, then os.replace() (atomic rename)
         try:
             import json as _json
             cfg_path = BASE_DIR / "config.json"
@@ -127,9 +136,18 @@ class Config:
                 existing.setdefault(parts[0], {})[parts[1]] = value
             else:
                 existing[key] = value
-            cfg_path.write_text(_json.dumps(existing, indent=2))
-        except Exception:
-            pass
+            # Write to tmp in same directory, then atomically rename
+            cfg_dir = str(cfg_path.parent)
+            with tempfile.NamedTemporaryFile(
+                    mode='w', dir=cfg_dir,
+                    suffix='.tmp', delete=False) as tmp:
+                _json.dump(existing, tmp, indent=2)
+                tmp.flush()
+                os.fsync(tmp.fileno())
+                tmp_path = tmp.name
+            os.replace(tmp_path, str(cfg_path))  # atomic on all major OSes
+        except Exception as e:
+            print(f"[Config] Warning: could not save config.json: {e}")
 
     def get_api_key(self, service: str) -> str:
         return self.get(f"api_keys.{service}", "")
