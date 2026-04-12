@@ -1,5 +1,0 @@
-{
-  "target": "marionnaud.fr",
-  "findings": [],
-  "result": "{'domain': 'marionnaud.fr', 'images': [], 'findings': [], 'gps_found': [], 'error': 'HTTP Error 403: Forbidden'}"
-}

@@ -1,5 +1,0 @@
-utm_campaign
-c
-utm_medium
-rt
-utm_source

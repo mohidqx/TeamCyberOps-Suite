@@ -233,7 +233,8 @@ class SettingsMixin:
         ]
 
         self._tool_status = {}
-        log_txt = Terminal(scroll, height=10)
+        sep = ctk.CTkFrame(scroll, height=2, fg_color=C["border"]); sep.pack(fill="x", pady=(8,4))
+        log_txt = Terminal(scroll, height=25)
         log_txt.pack(fill="x", pady=(0,8))
 
         for name, check, install, desc in tools:

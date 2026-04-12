@@ -34,7 +34,8 @@ class PowerMixin:
                                f"https://{self.project.get()}" if self.project.get() else "")).pack(
                     side="left", padx=6)
             vars_map[key] = v
-        term = Terminal(pad, height=18)
+        sep = ctk.CTkFrame(pad, height=2, fg_color=C["border"]); sep.pack(fill="x", pady=(8,4))
+        term = Terminal(pad, height=25)
         term.pack(fill="both", expand=True, pady=(10,0))
         btn_row = ctk.CTkFrame(pad); btn_row.pack(fill="x", pady=(8,0))
         stop_flag = [False]
@@ -99,7 +100,8 @@ class PowerMixin:
                                     self.root.update(),
                                     self.set_status("OAST URL copied!",C["green"]))).pack(side="left")
 
-        self._oast_term = Terminal(pad, height=16)
+        sep = ctk.CTkFrame(pad, height=2, fg_color=C["border"]); sep.pack(fill="x", pady=(8,4))
+        self._oast_term = Terminal(pad, height=25)
         self._oast_term.pack(fill="both", expand=True, pady=(0,8))
 
         def _log(m, t="info"):
@@ -178,7 +180,8 @@ class PowerMixin:
         self._jwt_input = ctk.CTkTextbox(ja, height=80,
                                           font=F(10,mono=True))
         self._jwt_input.pack(fill="x", padx=10, pady=(0,6))
-        self._jwt_term = Terminal(ja, height=14)
+        sep = ctk.CTkFrame(ja, height=2, fg_color=C["border"]); sep.pack(fill="x", pady=(8,4))
+        self._jwt_term = Terminal(ja, height=25)
         self._jwt_term.pack(fill="both", expand=True, padx=10, pady=(0,8))
         def _analyze_jwt():
             token = self._jwt_input.get("0.0","end").strip()
@@ -204,7 +207,8 @@ class PowerMixin:
         self._jatk_input = ctk.CTkTextbox(jatk, height=70,
                                            font=F(10,mono=True))
         self._jatk_input.pack(fill="x", padx=10)
-        self._jatk_term = Terminal(jatk, height=14)
+        sep = ctk.CTkFrame(jatk, height=2, fg_color=C["border"]); sep.pack(fill="x", pady=(8,4))
+        self._jatk_term = Terminal(jatk, height=25)
         self._jatk_term.pack(fill="both", expand=True, padx=10, pady=(6,8))
         for atk_name, atk_fn, color in [
             ("alg=none",   "attack_alg_none",    C["red"]),
@@ -239,7 +243,8 @@ class PowerMixin:
             o_input = ctk.CTkTextbox(ot, height=70,
                                       font=F(10,mono=True))
             o_input.pack(fill="x", padx=10)
-            o_term = Terminal(ot, height=14)
+            o_term_sep = ctk.CTkFrame(ot, height=2, fg_color=C["border"]); o_term_sep.pack(fill="x", pady=(8,4))
+            o_term = Terminal(ot, height=25)
             o_term.pack(fill="both", expand=True, padx=10, pady=(6,8))
             def _run_oauth(inp=o_input, t=o_term, fn=fn_name):
                 url = inp.get("0.0","end").strip()
@@ -389,7 +394,8 @@ class PowerMixin:
         ctk.CTkCheckBox(row, text="TLS", variable=self._smug_tls,
                         font=F(11)).pack(side="left", padx=12)
 
-        self._smug_term = Terminal(pad, height=18)
+        sep = ctk.CTkFrame(pad, height=2, fg_color=C["border"]); sep.pack(fill="x", pady=(8,4))
+        self._smug_term = Terminal(pad, height=25)
         self._smug_term.pack(fill="both", expand=True, pady=(10,0))
 
         def _run_builtin():
@@ -568,7 +574,8 @@ class PowerMixin:
         oauth_txt.pack(fill="x", pady=(0,8))
         oauth_txt.insert("0.0","https://auth.example.com/oauth/authorize?client_id=APP_ID&redirect_uri=https://app.com/callback&response_type=code&scope=openid+email&state=RANDOM_STATE")
 
-        term = Terminal(pad, height=16)
+        sep = ctk.CTkFrame(pad, height=2, fg_color=C["border"]); sep.pack(fill="x", pady=(8,4))
+        term = Terminal(pad, height=25)
         term.pack(fill="both", expand=True, pady=(0,8))
 
         attack_url_scroll = ctk.CTkScrollableFrame(pad, fg_color=C["bg_panel"],

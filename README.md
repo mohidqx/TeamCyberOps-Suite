@@ -1,12 +1,12 @@
 <div align="center">
-<h1><b>⬡ TeamCyberOps Suite v5.0.4+</b></h1>
+<h1><b>⬡ TeamCyberOps Suite v5.0.5+</b></h1>
 <h3><i>Enter Target. Everything Runs Automatically.</i></h3>
 </div>
 
 <div align="center">
 
 <img src="https://avatars.githubusercontent.com/u/89724864?s=400&v=4" width="150" style="border-radius: 50%;" alt="TeamCyberOps Logo" />
-<img src="https://readme-typing-svg.herokuapp.com?font=monospace&weight=200&size=40&duration=3000&pause=1000&color=000000&background=00000000&center=true&vCenter=true&width=900&lines=TeamCyberOps+Suite+v5.0.4;64+Tab+Offensive+Framework;AI+Auto-Exploit+Engine;Modular+Exploitation+Suite;for+Bugbounty+Hunter;" alt="Typing Header" />
+<img src="https://readme-typing-svg.herokuapp.com?font=monospace&weight=200&size=40&duration=3000&pause=1000&color=000000&background=00000000&center=true&vCenter=true&width=900&lines=TeamCyberOps+Suite+v5.0.5;68+Tab+Offensive+Framework;CVE-Based+Exploit+Suite;AI+Auto-Exploit+Engine;Modular+Exploitation+Suite;for+Bugbounty+Hunter;" alt="Typing Header" />
 
 <br>
 
@@ -14,14 +14,14 @@
 
 <p align="center">
   <img src="https://img.shields.io/badge/SYSTEM-ONLINE-000?style=for-the-badge&logo=linux&logoColor=ffffff&labelColor=000000&color=000000">
-  <img src="https://img.shields.io/badge/VERSION-v5.0.4-000?style=for-the-badge&logo=kali-linux&logoColor=ffffff&labelColor=000000&color=000000">
-  <img src="https://img.shields.io/badge/TABS-64-000?style=for-the-badge&logo=kali-linux&logoColor=ffffff&labelColor=000000&color=000000">
+  <img src="https://img.shields.io/badge/VERSION-v5.0.5-000?style=for-the-badge&logo=kali-linux&logoColor=ffffff&labelColor=000000&color=000000">
+  <img src="https://img.shields.io/badge/TABS-68-000?style=for-the-badge&logo=kali-linux&logoColor=ffffff&labelColor=000000&color=000000">
   <img src="https://img.shields.io/badge/AI-AUTO--EXPLOIT-000?style=for-the-badge&logo=anthropic&logoColor=ffffff&labelColor=000000&color=000000">
   <img src="https://img.shields.io/badge/THEME-C2_DARK_RED-000?style=for-the-badge&logo=github&logoColor=ffffff&labelColor=000000&color=000000">
 </p>
 
-![Code](https://img.shields.io/badge/Code-17%2C700%2B%20Lines-050810?style=flat-square&color=000000)
-![Tabs](https://img.shields.io/badge/Tabs-64-050810?style=flat-square&color=000000)
+![Code](https://img.shields.io/badge/Code-18%2C200%2B%20Lines-050810?style=flat-square&color=000000)
+![Tabs](https://img.shields.io/badge/Tabs-68-050810?style=flat-square&color=000000)
 ![Oneliners](https://img.shields.io/badge/Oneliners-239-050810?style=flat-square&color=000000)
 ![Modules](https://img.shields.io/badge/Modules-32-050810?style=flat-square&color=000000)
 ![Power](https://img.shields.io/badge/POWER_Tabs-16-050810?style=flat-square&color=000000)
@@ -48,11 +48,11 @@
 ```
 ╔══════════════════════════════════════════════════════════════════════╗
 ║                                                                      ║
-║        ⬡  T E A M C Y B E R O P S   S U I T E   v 5 . 0 . 4          ║
+║        ⬡  T E A M C Y B E R O P S   S U I T E   v 5 . 0 . 5          ║
 ║                                                                      ║
-║   64 Tabs  ·  239 Oneliners  ·  16 POWER  ·  3 Exploit Modules      ║
+║   68 Tabs  ·  239 Oneliners  ·  16 POWER  ·  7 Exploit Modules      ║
 ║   Cyberpunk #050810  ·  Electric Cyan #00f5ff  ·  Matrix #00ff88     ║
-║   SSRF Suite  ·  2FA Bypass  ·  Brute Force  ·  SMTP Exploit         ║
+║   CVE-2024-4040  ·  CVE-2024-21893  ·  CVE-2023-46604  ·  CVE-2024-39709 ║
 ║   Kali Wordlists  ·  Windows + Linux + macOS  ·  Python 3.9+         ║
 ║                                                                      ║
 ╚══════════════════════════════════════════════════════════════════════╝
@@ -110,7 +110,7 @@ Cyberpunk Color Palette:
 - 🎯 **Lazy loading** — fast startup
 - ↕️ **Sortable columns** — click headers in data tables
 - 🏷️ **Severity badges** — CRITICAL/HIGH/MEDIUM/LOW/INFO
-- 📺 **Optimized terminal layout** — Full-height CLI output (400px+) with split controls/terminal view
+- 📺 **Terminal Bottom Half** — 25-28 visible lines per Terminal (50% screen space) with dark separator
 - 📐 **Refined padding** — Consistent 12px horizontal / 8px vertical spacing across all tabs
 
 ---
@@ -197,7 +197,7 @@ TeamCyberOps/
 
 ---
 
-## 🗂️ All 61 Tabs
+## 🗂️ All 68 Tabs (v5.0.5)
 
 ### 🏠 MAIN (3)
 | Tab | Description | Works Without Tools |
@@ -227,13 +227,17 @@ TeamCyberOps/
 | Source SAST | Static code analysis — SQLi, CMDi, XSS, secrets patterns | ✅ Pure Python |
 | Mass Scanner | Multi-target HTTP probing | ✅ Pure Python |
 
-### 💣 EXPLOIT (8)
+### 💣 EXPLOIT (12) — CVE-Based + Classic Exploits
 | Tab | Description | Status |
 |-----|-------------|--------|
 | Exploitation | 500+ payloads: XSS/SQLi/SSRF/LFI/XXE/SSTI/CMDi | ✅ Built-in |
 | Brute Force | phpMyAdmin credential tester (custom user/pass lists) | ✅ Pure Python |
 | SMTP Exploit | CVE-2023-42117 Exim 4.96 OOB Write tester | ✅ Pure Python |
 | Web Fuzzer | Path discovery (40+ default paths, configurable workers) | ✅ Pure Python |
+| **ActiveMQ RCE** | **CVE-2024-4040** — OpenWire deserialization RCE (port 61616) | ✅ Pure Python |
+| **Cisco ASA RCE** | **CVE-2024-21893** — XXE + XSLT injection (admin interface) | ✅ Pure Python |
+| **OFBiz RCE** | **CVE-2023-46604** — Groovy expression injection (REST API) | ✅ Pure Python |
+| **WhatsUp Gold** | **CVE-2024-39709** — File download + SYSTEM execution (Windows) | ✅ Pure Python |
 | Payload Mgr | Payload library browser + PayloadsAllTheThings | ✅ Pure Python |
 | Oneliners | **239 oneliners in 25 categories** (copy/run) | ✅ No tools |
 | Chain Builder | Multi-step exploit chain scorer | ✅ Pure Python |

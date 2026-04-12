@@ -191,7 +191,8 @@ class ResultsMixin:
         left.pack(side="left", fill="both", expand=True, padx=(0,8))
         ctk.CTkLabel(left, text="  LIVE LOG",
                      font=F(10, bold=True, mono=True), anchor="w").pack(anchor="w", padx=10, pady=(8,4))
-        self._lm_log = Terminal(left, height=16)
+        sep = ctk.CTkFrame(left, height=2, fg_color=C["border"]); sep.pack(fill="x", pady=(8,4))
+        self._lm_log = Terminal(left, height=25)
         self._lm_log.pack(fill="both", expand=True, padx=8, pady=(0,8))
 
         right = ctk.CTkFrame(pane, width=320)

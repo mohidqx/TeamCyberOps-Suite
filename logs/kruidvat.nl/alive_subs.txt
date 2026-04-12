@@ -1,6 +1,0 @@
-http://folder.kruidvat.nl [301] [301 Moved Permanently]
-http://m.mail.kruidvat.nl [404] [404 Not Found]
-http://campaign.kruidvat.nl [200]
-http://api.kruidvat.nl [404]
-http://nieuws.kruidvat.nl [301] [301 Moved Permanently]
-http://www.kruidvat.nl [403] [Access Denied]

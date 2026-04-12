@@ -1,2 +1,0 @@
-# Nmap 7.98 scan initiated Wed Mar 18 21:06:05 2026 as: /usr/lib/nmap/nmap -sV -sC -T4 --open -p 21,22,23,25,53,80,110,143,443,445,993,995,3306,3389,5432,5900,6379,8080,8443,8888,9200,27017 -oN /mnt/c/Users/User/Desktop/TeamCyberOps_v4_final/TeamCyberOps/logs/tracker.nasper.com/nmap_tracker.nasper.com.txt tracker.nasper.com
-# Nmap done at Wed Mar 18 21:06:10 2026 -- 1 IP address (0 hosts up) scanned in 4.76 seconds

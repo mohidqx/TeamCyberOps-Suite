@@ -1,4 +1,0 @@
-- Nikto v2.6.0/
-+ Target Host: iciparisxl.nl
-+ Target Port: 443
-+ GET Unable to connect to iciparisxl.nl:443.
