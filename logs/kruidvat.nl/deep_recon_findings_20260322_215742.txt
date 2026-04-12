@@ -1,0 +1,482 @@
+# DEEP RECON FINDINGS — kruidvat.nl
+
+[CRITICAL] [Missing Security Header] campaign.kruidvat.nl
+           HSTS missing
+
+[CRITICAL] [Missing Security Header] cewe.kruidvat.nl
+           HSTS missing
+
+[CRITICAL] [Subdomain Takeover] speelgoedfolder.kruidvat.nl
+           SUBDOMAIN TAKEOVER: speelgoedfolder.kruidvat.nl → AWS CloudFront
+
+[HIGH    ] [SPF Issue] autoverzekering.kruidvat.nl
+           No SPF record — email spoofing possible
+
+[HIGH    ] [DMARC Issue] autoverzekering.kruidvat.nl
+           No DMARC record — phishing/spoofing not blocked
+
+[HIGH    ] [SPF Issue] app-cc.kruidvat.nl
+           No SPF record — email spoofing possible
+
+[HIGH    ] [DMARC Issue] app-cc.kruidvat.nl
+           No DMARC record — phishing/spoofing not blocked
+
+[HIGH    ] [SPF Issue] beta.kruidvat.nl
+           No SPF record — email spoofing possible
+
+[HIGH    ] [DMARC Issue] beta.kruidvat.nl
+           No DMARC record — phishing/spoofing not blocked
+
+[HIGH    ] [SPF Issue] api.kruidvat.nl
+           No SPF record — email spoofing possible
+
+[HIGH    ] [DMARC Issue] api.kruidvat.nl
+           No DMARC record — phishing/spoofing not blocked
+
+[HIGH    ] [SPF Issue] beta-backoffice.kruidvat.nl
+           No SPF record — email spoofing possible
+
+[HIGH    ] [DMARC Issue] beta-backoffice.kruidvat.nl
+           No DMARC record — phishing/spoofing not blocked
+
+[HIGH    ] [SPF Issue] beauty.kruidvat.nl
+           No SPF record — email spoofing possible
+
+[HIGH    ] [DMARC Issue] beauty.kruidvat.nl
+           No DMARC record — phishing/spoofing not blocked
+
+[HIGH    ] [SPF Issue] cartridge.kruidvat.nl
+           No SPF record — email spoofing possible
+
+[HIGH    ] [DMARC Issue] cartridge.kruidvat.nl
+           No DMARC record — phishing/spoofing not blocked
+
+[HIGH    ] [SPF Issue] censhare-dev.kruidvat.nl
+           No SPF record — email spoofing possible
+
+[HIGH    ] [DMARC Issue] censhare-dev.kruidvat.nl
+           No DMARC record — phishing/spoofing not blocked
+
+[HIGH    ] [SPF Issue] censhare.kruidvat.nl
+           No SPF record — email spoofing possible
+
+[HIGH    ] [DMARC Issue] censhare.kruidvat.nl
+           No DMARC record — phishing/spoofing not blocked
+
+[HIGH    ] [SPF Issue] canvas.kruidvat.nl
+           No SPF record — email spoofing possible
+
+[HIGH    ] [DMARC Issue] canvas.kruidvat.nl
+           No DMARC record — phishing/spoofing not blocked
+
+[HIGH    ] [SPF Issue] brillen.kruidvat.nl
+           No SPF record — email spoofing possible
+
+[HIGH    ] [DMARC Issue] brillen.kruidvat.nl
+           No DMARC record — phishing/spoofing not blocked
+
+[HIGH    ] [SPF Issue] adminfbdeals.kruidvat.nl
+           No SPF record — email spoofing possible
+
+[HIGH    ] [DMARC Issue] adminfbdeals.kruidvat.nl
+           No DMARC record — phishing/spoofing not blocked
+
+[HIGH    ] [SPF Issue] app.kruidvat.nl
+           No SPF record — email spoofing possible
+
+[HIGH    ] [DMARC Issue] app.kruidvat.nl
+           No DMARC record — phishing/spoofing not blocked
+
+[HIGH    ] [SPF Issue] apptest.kruidvat.nl
+           No SPF record — email spoofing possible
+
+[HIGH    ] [DMARC Issue] apptest.kruidvat.nl
+           No DMARC record — phishing/spoofing not blocked
+
+[HIGH    ] [SPF Issue] adminonline.kruidvat.nl
+           No SPF record — email spoofing possible
+
+[HIGH    ] [DMARC Issue] adminonline.kruidvat.nl
+           No DMARC record — phishing/spoofing not blocked
+
+[HIGH    ] [SPF Issue] campaign.kruidvat.nl
+           No SPF record — email spoofing possible
+
+[HIGH    ] [DMARC Issue] campaign.kruidvat.nl
+           No DMARC record — phishing/spoofing not blocked
+
+[HIGH    ] [Missing Security Header] campaign.kruidvat.nl
+           CSP missing
+
+[HIGH    ] [SPF Issue] api-s1.kruidvat.nl
+           No SPF record — email spoofing possible
+
+[HIGH    ] [DMARC Issue] api-s1.kruidvat.nl
+           No DMARC record — phishing/spoofing not blocked
+
+[HIGH    ] [SPF Issue] bloglaunch.kruidvat.nl
+           No SPF record — email spoofing possible
+
+[HIGH    ] [DMARC Issue] bloglaunch.kruidvat.nl
+           No DMARC record — phishing/spoofing not blocked
+
+[HIGH    ] [SPF Issue] cewe.kruidvat.nl
+           No SPF record — email spoofing possible
+
+[HIGH    ] [SPF Issue] cewetest.kruidvat.nl
+           No SPF record — email spoofing possible
+
+[HIGH    ] [DMARC Issue] cewetest.kruidvat.nl
+           No DMARC record — phishing/spoofing not blocked
+
+[HIGH    ] [SPF Issue] energie.kruidvat.nl
+           No SPF record — email spoofing possible
+
+[HIGH    ] [DMARC Issue] energie.kruidvat.nl
+           No DMARC record — phishing/spoofing not blocked
+
+[HIGH    ] [SPF Issue] content-dev.kruidvat.nl
+           No SPF record — email spoofing possible
+
+[HIGH    ] [DMARC Issue] content-dev.kruidvat.nl
+           No DMARC record — phishing/spoofing not blocked
+
+[HIGH    ] [SPF Issue] dagjeuit.kruidvat.nl
+           No SPF record — email spoofing possible
+
+[HIGH    ] [DMARC Issue] dagjeuit.kruidvat.nl
+           No DMARC record — phishing/spoofing not blocked
+
+[HIGH    ] [SPF Issue] content.kruidvat.nl
+           No SPF record — email spoofing possible
+
+[HIGH    ] [DMARC Issue] content.kruidvat.nl
+           No DMARC record — phishing/spoofing not blocked
+
+[HIGH    ] [SPF Issue] huisdierenverzekering.kruidvat.nl
+           No SPF record — email spoofing possible
+
+[HIGH    ] [DMARC Issue] huisdierenverzekering.kruidvat.nl
+           No DMARC record — phishing/spoofing not blocked
+
+[HIGH    ] [SPF Issue] digital.kruidvat.nl
+           No SPF record — email spoofing possible
+
+[HIGH    ] [DMARC Issue] digital.kruidvat.nl
+           No DMARC record — phishing/spoofing not blocked
+
+[HIGH    ] [SPF Issue] fb.kruidvat.nl
+           No SPF record — email spoofing possible
+
+[HIGH    ] [DMARC Issue] fb.kruidvat.nl
+           No DMARC record — phishing/spoofing not blocked
+
+[HIGH    ] [SPF Issue] keycloak-censhare-dev.kruidvat.nl
+           No SPF record — email spoofing possible
+
+[HIGH    ] [DMARC Issue] keycloak-censhare-dev.kruidvat.nl
+           No DMARC record — phishing/spoofing not blocked
+
+[HIGH    ] [SPF Issue] leningofferte.kruidvat.nl
+           No SPF record — email spoofing possible
+
+[HIGH    ] [DMARC Issue] leningofferte.kruidvat.nl
+           No DMARC record — phishing/spoofing not blocked
+
+[HIGH    ] [SPF Issue] foto.kruidvat.nl
+           No SPF record — email spoofing possible
+
+[HIGH    ] [DMARC Issue] foto.kruidvat.nl
+           No DMARC record — phishing/spoofing not blocked
+
+[HIGH    ] [SPF Issue] internetvoordeel.kruidvat.nl
+           No SPF record — email spoofing possible
+
+[HIGH    ] [DMARC Issue] internetvoordeel.kruidvat.nl
+           No DMARC record — phishing/spoofing not blocked
+
+[HIGH    ] [SPF Issue] fbdeals.kruidvat.nl
+           No SPF record — email spoofing possible
+
+[HIGH    ] [DMARC Issue] fbdeals.kruidvat.nl
+           No DMARC record — phishing/spoofing not blocked
+
+[HIGH    ] [SPF Issue] kruidvatkids.kruidvat.nl
+           No SPF record — email spoofing possible
+
+[HIGH    ] [DMARC Issue] kruidvatkids.kruidvat.nl
+           No DMARC record — phishing/spoofing not blocked
+
+[HIGH    ] [SPF Issue] ecom-static.kruidvat.nl
+           No SPF record — email spoofing possible
+
+[HIGH    ] [DMARC Issue] ecom-static.kruidvat.nl
+           No DMARC record — phishing/spoofing not blocked
+
+[HIGH    ] [SPF Issue] ecom-data.kruidvat.nl
+           No SPF record — email spoofing possible
+
+[HIGH    ] [DMARC Issue] ecom-data.kruidvat.nl
+           No DMARC record — phishing/spoofing not blocked
+
+[HIGH    ] [DMARC Issue] klantenservice.kruidvat.nl
+           No DMARC record — phishing/spoofing not blocked
+
+[HIGH    ] [SPF Issue] koopjeskoning.kruidvat.nl
+           No SPF record — email spoofing possible
+
+[HIGH    ] [DMARC Issue] koopjeskoning.kruidvat.nl
+           No DMARC record — phishing/spoofing not blocked
+
+[HIGH    ] [SPF Issue] kaartsturen.kruidvat.nl
+           No SPF record — email spoofing possible
+
+[HIGH    ] [DMARC Issue] kaartsturen.kruidvat.nl
+           No DMARC record — phishing/spoofing not blocked
+
+[HIGH    ] [SPF Issue] fotoservice.kruidvat.nl
+           No SPF record — email spoofing possible
+
+[HIGH    ] [DMARC Issue] fotoservice.kruidvat.nl
+           No DMARC record — phishing/spoofing not blocked
+
+[HIGH    ] [SPF Issue] keycloak-censhare.kruidvat.nl
+           No SPF record — email spoofing possible
+
+[HIGH    ] [DMARC Issue] keycloak-censhare.kruidvat.nl
+           No DMARC record — phishing/spoofing not blocked
+
+[HIGH    ] [SPF Issue] localhost.kruidvat.nl
+           No SPF record — email spoofing possible
+
+[HIGH    ] [DMARC Issue] localhost.kruidvat.nl
+           No DMARC record — phishing/spoofing not blocked
+
+[HIGH    ] [SPF Issue] folder.kruidvat.nl
+           No SPF record — email spoofing possible
+
+[HIGH    ] [DMARC Issue] folder.kruidvat.nl
+           No DMARC record — phishing/spoofing not blocked
+
+[HIGH    ] [SPF Issue] media-s1.kruidvat.nl
+           No SPF record — email spoofing possible
+
+[HIGH    ] [DMARC Issue] media-s1.kruidvat.nl
+           No DMARC record — phishing/spoofing not blocked
+
+[HIGH    ] [DMARC Issue] mobiel.kruidvat.nl
+           No DMARC record — phishing/spoofing not blocked
+
+[HIGH    ] [DMARC Issue] kruidvat.nl
+           No DMARC record — phishing/spoofing not blocked
+
+[HIGH    ] [SPF Issue] parfum.kruidvat.nl
+           No SPF record — email spoofing possible
+
+[HIGH    ] [DMARC Issue] parfum.kruidvat.nl
+           No DMARC record — phishing/spoofing not blocked
+
+[HIGH    ] [SPF Issue] online-prd.kruidvat.nl
+           No SPF record — email spoofing possible
+
+[HIGH    ] [DMARC Issue] online-prd.kruidvat.nl
+           No DMARC record — phishing/spoofing not blocked
+
+[HIGH    ] [SPF Issue] online-tst.kruidvat.nl
+           No SPF record — email spoofing possible
+
+[HIGH    ] [DMARC Issue] online-tst.kruidvat.nl
+           No DMARC record — phishing/spoofing not blocked
+
+[HIGH    ] [SPF Issue] rechtsbijstandverzekering.kruidvat.nl
+           No SPF record — email spoofing possible
+
+[HIGH    ] [DMARC Issue] rechtsbijstandverzekering.kruidvat.nl
+           No DMARC record — phishing/spoofing not blocked
+
+[HIGH    ] [SPF Issue] ogone.kruidvat.nl
+           No SPF record — email spoofing possible
+
+[HIGH    ] [DMARC Issue] ogone.kruidvat.nl
+           No DMARC record — phishing/spoofing not blocked
+
+[HIGH    ] [SPF Issue] online.kruidvat.nl
+           No SPF record — email spoofing possible
+
+[HIGH    ] [DMARC Issue] online.kruidvat.nl
+           No DMARC record — phishing/spoofing not blocked
+
+[HIGH    ] [SPF Issue] media.kruidvat.nl
+           No SPF record — email spoofing possible
+
+[HIGH    ] [DMARC Issue] media.kruidvat.nl
+           No DMARC record — phishing/spoofing not blocked
+
+[HIGH    ] [SPF Issue] persoonlijk-tst.kruidvat.nl
+           No SPF record — email spoofing possible
+
+[HIGH    ] [DMARC Issue] persoonlijk-tst.kruidvat.nl
+           No DMARC record — phishing/spoofing not blocked
+
+[HIGH    ] [SPF Issue] nieuwsbrief.kruidvat.nl
+           No SPF record — email spoofing possible
+
+[HIGH    ] [DMARC Issue] nieuwsbrief.kruidvat.nl
+           No DMARC record — phishing/spoofing not blocked
+
+[HIGH    ] [SPF Issue] reisverzekering.kruidvat.nl
+           No SPF record — email spoofing possible
+
+[HIGH    ] [DMARC Issue] reisverzekering.kruidvat.nl
+           No DMARC record — phishing/spoofing not blocked
+
+[HIGH    ] [SPF Issue] sparen.kruidvat.nl
+           No SPF record — email spoofing possible
+
+[HIGH    ] [DMARC Issue] sparen.kruidvat.nl
+           No DMARC record — phishing/spoofing not blocked
+
+[HIGH    ] [SPF Issue] spin.kruidvat.nl
+           No SPF record — email spoofing possible
+
+[HIGH    ] [DMARC Issue] spin.kruidvat.nl
+           No DMARC record — phishing/spoofing not blocked
+
+[HIGH    ] [SPF Issue] mta-sts.kruidvat.nl
+           No SPF record — email spoofing possible
+
+[HIGH    ] [DMARC Issue] mta-sts.kruidvat.nl
+           No DMARC record — phishing/spoofing not blocked
+
+[HIGH    ] [SPF Issue] prod-cc.kruidvat.nl
+           No SPF record — email spoofing possible
+
+[HIGH    ] [DMARC Issue] prod-cc.kruidvat.nl
+           No DMARC record — phishing/spoofing not blocked
+
+[HIGH    ] [SPF Issue] servicecenter.kruidvat.nl
+           No SPF record — email spoofing possible
+
+[HIGH    ] [DMARC Issue] servicecenter.kruidvat.nl
+           No DMARC record — phishing/spoofing not blocked
+
+[HIGH    ] [SPF Issue] smtp.kruidvat.nl
+           No SPF record — email spoofing possible
+
+[HIGH    ] [DMARC Issue] smtp.kruidvat.nl
+           No DMARC record — phishing/spoofing not blocked
+
+[HIGH    ] [SPF Issue] service.kruidvat.nl
+           No SPF record — email spoofing possible
+
+[HIGH    ] [DMARC Issue] service.kruidvat.nl
+           No DMARC record — phishing/spoofing not blocked
+
+[HIGH    ] [SPF Issue] speelgoed.kruidvat.nl
+           No SPF record — email spoofing possible
+
+[HIGH    ] [DMARC Issue] speelgoed.kruidvat.nl
+           No DMARC record — phishing/spoofing not blocked
+
+[HIGH    ] [SPF Issue] speelgoedspecial.kruidvat.nl
+           No SPF record — email spoofing possible
+
+[HIGH    ] [DMARC Issue] speelgoedspecial.kruidvat.nl
+           No DMARC record — phishing/spoofing not blocked
+
+[HIGH    ] [SPF Issue] static-prd.kruidvat.nl
+           No SPF record — email spoofing possible
+
+[HIGH    ] [DMARC Issue] static-prd.kruidvat.nl
+           No DMARC record — phishing/spoofing not blocked
+
+[HIGH    ] [SPF Issue] nieuws.kruidvat.nl
+           No SPF record — email spoofing possible
+
+[HIGH    ] [DMARC Issue] nieuws.kruidvat.nl
+           No DMARC record — phishing/spoofing not blocked
+
+[HIGH    ] [SPF Issue] persoonlijk.kruidvat.nl
+           No SPF record — email spoofing possible
+
+[HIGH    ] [DMARC Issue] persoonlijk.kruidvat.nl
+           No DMARC record — phishing/spoofing not blocked
+
+[HIGH    ] [SPF Issue] testcartridge.kruidvat.nl
+           No SPF record — email spoofing possible
+
+[HIGH    ] [DMARC Issue] testcartridge.kruidvat.nl
+           No DMARC record — phishing/spoofing not blocked
+
+[HIGH    ] [SPF Issue] static-tst.kruidvat.nl
+           No SPF record — email spoofing possible
+
+[HIGH    ] [DMARC Issue] static-tst.kruidvat.nl
+           No DMARC record — phishing/spoofing not blocked
+
+[HIGH    ] [SPF Issue] verzekeringen.kruidvat.nl
+           No SPF record — email spoofing possible
+
+[HIGH    ] [DMARC Issue] verzekeringen.kruidvat.nl
+           No DMARC record — phishing/spoofing not blocked
+
+[HIGH    ] [SPF Issue] thuiskomen.kruidvat.nl
+           No SPF record — email spoofing possible
+
+[HIGH    ] [DMARC Issue] thuiskomen.kruidvat.nl
+           No DMARC record — phishing/spoofing not blocked
+
+[HIGH    ] [SPF Issue] static.kruidvat.nl
+           No SPF record — email spoofing possible
+
+[HIGH    ] [DMARC Issue] static.kruidvat.nl
+           No DMARC record — phishing/spoofing not blocked
+
+[HIGH    ] [DMARC Issue] voordeeltent.kruidvat.nl
+           No DMARC record — phishing/spoofing not blocked
+
+[HIGH    ] [SPF Issue] speelgoedfolder.kruidvat.nl
+           No SPF record — email spoofing possible
+
+[HIGH    ] [DMARC Issue] speelgoedfolder.kruidvat.nl
+           No DMARC record — phishing/spoofing not blocked
+
+[HIGH    ] [SPF Issue] www-s1.kruidvat.nl
+           No SPF record — email spoofing possible
+
+[HIGH    ] [DMARC Issue] www-s1.kruidvat.nl
+           No DMARC record — phishing/spoofing not blocked
+
+[HIGH    ] [SPF Issue] www-tst.kruidvat.nl
+           No SPF record — email spoofing possible
+
+[HIGH    ] [DMARC Issue] www-tst.kruidvat.nl
+           No DMARC record — phishing/spoofing not blocked
+
+[HIGH    ] [SPF Issue] www-tst2.kruidvat.nl
+           No SPF record — email spoofing possible
+
+[HIGH    ] [DMARC Issue] www-tst2.kruidvat.nl
+           No DMARC record — phishing/spoofing not blocked
+
+[HIGH    ] [SPF Issue] www-uat.kruidvat.nl
+           No SPF record — email spoofing possible
+
+[HIGH    ] [DMARC Issue] www-uat.kruidvat.nl
+           No DMARC record — phishing/spoofing not blocked
+
+[HIGH    ] [SPF Issue] www.kruidvat.nl
+           No SPF record — email spoofing possible
+
+[HIGH    ] [DMARC Issue] www.kruidvat.nl
+           No DMARC record — phishing/spoofing not blocked
+
+[HIGH    ] [SPF Issue] zorgverzekering.kruidvat.nl
+           No SPF record — email spoofing possible
+
+[HIGH    ] [DMARC Issue] zorgverzekering.kruidvat.nl
+           No DMARC record — phishing/spoofing not blocked
+
+[MEDIUM  ] [SPF Issue] mobiel.kruidvat.nl
+           SPF uses ~all (softfail) — consider -all (hardfail)
+

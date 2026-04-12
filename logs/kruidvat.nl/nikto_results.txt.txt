@@ -1,0 +1,4 @@
+- Nikto v2.6.0/
++ Target Host: 
++ Target Port: 443
++ GET ERROR: Cannot resolve hostname 'kruidvat.nl' because 'Temporary failure in name resolution'.

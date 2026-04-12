@@ -1,0 +1,20 @@
+# Nmap 7.98 scan initiated Mon Mar 16 12:36:28 2026 as: /usr/lib/nmap/nmap -sV -sC -T4 --open -p 21,22,23,25,53,80,110,143,443,445,993,995,3306,3389,5432,5900,6379,8080,8443,8888,9200,27017 -oN /mnt/c/Users/User/Desktop/TeamCyberOps/logs/iciparisxl.nl/nmap_mta-sts.iciparisxl.nl.txt mta-sts.iciparisxl.nl
+Nmap scan report for mta-sts.iciparisxl.nl (18.239.50.121)
+Host is up (0.19s latency).
+Other addresses for mta-sts.iciparisxl.nl (not scanned): 2600:9000:20ab:b600:1a:5ebb:e680:93a1 2600:9000:20ab:400:1a:5ebb:e680:93a1 2600:9000:20ab:ba00:1a:5ebb:e680:93a1 2600:9000:20ab:ca00:1a:5ebb:e680:93a1 2600:9000:20ab:fa00:1a:5ebb:e680:93a1 2600:9000:20ab:f200:1a:5ebb:e680:93a1 2600:9000:20ab:f000:1a:5ebb:e680:93a1 2600:9000:20ab:5800:1a:5ebb:e680:93a1 18.239.50.16 18.239.50.51 18.239.50.24
+rDNS record for 18.239.50.121: server-18-239-50-121.ams58.r.cloudfront.net
+Not shown: 20 filtered tcp ports (no-response)
+Some closed ports may be reported as filtered due to --defeat-rst-ratelimit
+PORT    STATE SERVICE  VERSION
+80/tcp  open  http     Amazon CloudFront httpd
+|_http-title: Did not follow redirect to https://mta-sts.iciparisxl.nl/
+|_http-server-header: CloudFront
+443/tcp open  ssl/http Amazon CloudFront httpd
+|_http-title: Site doesn't have a title (application/xml).
+| ssl-cert: Subject: commonName=mta-sts.iciparisxl.nl
+| Subject Alternative Name: DNS:mta-sts.iciparisxl.nl
+| Not valid before: 2026-01-05T00:00:00
+|_Not valid after:  2027-02-03T23:59:59
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+# Nmap done at Mon Mar 16 12:37:08 2026 -- 1 IP address (1 host up) scanned in 39.97 seconds
