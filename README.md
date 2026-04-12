@@ -1,5 +1,5 @@
 <div align="center">
-<h1><b>⬡ TeamCyberOps Suite v5.0</b></h1>
+<h1><b>⬡ TeamCyberOps Suite v5.0.4+</b></h1>
 <h3><i>Enter Target. Everything Runs Automatically.</i></h3>
 </div>
 

@@ -1,0 +1,33 @@
+{
+  "api_keys": {
+    "gemini_api_key": "",
+    "claude_api_key": "",
+    "shodan": "",
+    "censys_id": "",
+    "censys_secret": "",
+    "github_token": "",
+    "hunter": "",
+    "virustotal": "",
+    "nvd_api_key": ""
+  },
+  "proxy": {
+    "enabled": false,
+    "host": "127.0.0.1",
+    "port": "8080",
+    "type": "http"
+  },
+  "wordlists": {
+    "directories": "wordlists/directories.txt",
+    "subdomains": "wordlists/subdomains.txt",
+    "passwords": "wordlists/passwords.txt",
+    "parameters": "wordlists/parameters.txt"
+  },
+  "ai": {
+    "provider": "gemini",
+    "gemini_model": "gemini-2.0-flash-exp"
+  },
+  "scan": {
+    "threads": 50,
+    "timeout": 10
+  }
+}

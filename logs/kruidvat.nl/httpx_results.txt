@@ -1,0 +1,6 @@
+https://m.mail.kruidvat.nl [404] [404 Not Found] [Apache HTTP Server]
+https://www-s1.kruidvat.nl [403] [Error]
+https://prod-cc.kruidvat.nl [403] [Error]
+https://voordeeltent.kruidvat.nl [404] [404 Page not found] [Apache HTTP Server,HSTS]
+http://res.mail.kruidvat.nl [404] [404 Not Found] [Amazon CloudFront,Amazon Web Services,Apache HTTP Server]
+http://www.kruidvat.nl [403] [Access Denied]

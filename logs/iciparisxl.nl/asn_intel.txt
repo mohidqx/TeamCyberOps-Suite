@@ -1,0 +1,5 @@
+IP:       23.37.189.75
+Hostname: a23-37-189-75.deploy.static.akamaitechnologies.com
+Org/ASN:  AS16625 Akamai Technologies, Inc.
+Country:  AE
+Region:   Fujairah, Fujairah
