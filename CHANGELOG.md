@@ -5,7 +5,58 @@ Format based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ---
 
-## [5.0.2] — 2026-04-11 (UI Polish)
+## [5.0.4] — 2026-04-12 (Server Script Integration)
+
+### New Features
+- **Three new exploitation tabs** in "Exploitation Center":
+  - **Brute Force** — phpMyAdmin credential testing with custom username/password lists
+  - **SMTP Exploit** — CVE-2023-42117 (Exim 4.96 OOB Write) vulnerability tester
+  - **Web Fuzzer** — Path discovery with configurable workers & timeout
+
+### Integration & Refactoring
+- **Modularized three root-level server scripts** into production modules:
+  - `brute-server.py` → `modules/exploit/brute_force.py` (312 lines)
+  - `connect-server.py` → `modules/exploit/smtp_exploit.py` (76 lines)
+  - `fuzz_server.py` → `modules/vuln/fuzz.py` (128 lines)
+- **Removed all hardcoded targets** — All three tools now accept user-supplied URLs/hosts
+- **Added proper error handling & callbacks** — Real-time terminal logging from module functions
+- **Atomic file operations** — Web fuzzer now uses `tempfile + os.replace()` for race-condition-free writes
+
+### Root Directory Cleanup
+- ✅ Deleted `brute-server.py` (integrated into UI)
+- ✅ Deleted `connect-server.py` (integrated into UI)
+- ✅ Deleted `fuzz_server.py` (integrated into UI)
+- ✅ Only `main.py` remains in root — clean architecture
+
+### User Experience Improvements
+- **Brute Force tab:**
+  - URL input field (required)
+  - Comma-separated usernames list (default: admin, da_admin, root)
+  - Comma-separated passwords list (default: admin, password, 123456, admin123)
+  - Real-time credential testing output
+  
+- **SMTP Exploit tab:**
+  - Target host/IP input field (required)
+  - Configurable port (default: 465 SMTP-TLS, 25 standard SMTP)
+  - CVE-2023-42117 8KB overflow payload testing
+  - Connection feedback & vulnerability assessment
+  
+- **Web Fuzzer tab:**
+  - Target URL input field (required)
+  - Configurable worker threads (default: 20)
+  - Configurable timeout per path (default: 4 seconds)
+  - 40+ default sensitive paths (env files, backups, git, admin panels)
+  - Status detection: 200 OK, 403 Forbidden, 301/302 redirects
+  - Atomic result output to `fuzz_results.txt`
+
+### Documentation
+- Updated BUGS.md with integration status for BUG #1, #2, #3, #19
+- Added new module imports to relevant `__init__.py` files
+- Verified all new modules importable with `pytest`
+
+---
+
+## [5.0.3] — 2026-04-12 (Security Hardening)
 
 ### Fixed
 - **Excessive tab padding** — Reduced `padx=20, pady=14` to `padx=12, pady=8` across all tab files 

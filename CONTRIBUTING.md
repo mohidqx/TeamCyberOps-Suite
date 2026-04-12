@@ -5,11 +5,15 @@ Thank you for your interest in contributing!
 ## Getting Started
 
 ```bash
-git clone https://github.com/mohidqx/TeamCyberOps_v5
-cd TeamCyberOps_v5
-pip install customtkinter pillow requests psutil
+git clone https://github.com/mohidqx/TeamCyberOps_Suite
+cd TeamCyberOps_Suite
+pip install customtkinter pillow requests psutil --break-system-packages
 python main.py
 ```
+
+> [!IMPORTANT]
+> Note: The `--break-system-packages` flag is required for Python 3.12+ to allow installing packages outside of a virtual environment.
+> default password: `admin`
 
 ## Project Structure
 
