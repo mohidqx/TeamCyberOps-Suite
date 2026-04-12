@@ -5,27 +5,6 @@ Format based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ---
 
-## [5.0.2] — 2026-04-11 (UI Polish)
-
-### Fixed
-- **Excessive tab padding** — Reduced `padx=20, pady=14` to `padx=12, pady=8` across all tab files 
-  (scanner.py, recon.py, exploit.py, ai_tabs.py, power.py, intel.py, results.py). Content now has 
-  proper margins without wasting screen real estate.
-- **CLI terminal too small** — Terminal widgets in vulnerability scanner, nuclei manager, and analysis tabs 
-  now properly fill available space using `fill="both", expand=True`. Terminals now occupy the full 
-  bottom half of the window, making scan output much more readable.
-- **Split layout consistency** — All recon tabs use unified split layout:
-  - **TOP section (fixed):** Section header + info card + controls + buttons
-  - **Accent separator line:** Visual divider between controls and terminal
-  - **BOTTOM section (expands):** Terminal fills remaining vertical space (400px+)
-
-### Enhanced
-- **Workspace efficiency** — More screen real estate for scan results and terminal output
-- **Output visibility** — Terminal now shows 30-40 lines of output instead of 2-3 lines
-- **Consistent spacing** — All tab padding now matches design system (12px horizontal, 8px vertical)
-
----
-
 ## [5.0.3] — 2026-04-12
 
 ### Security Fixes (BUGS.md verified)
@@ -75,7 +54,26 @@ Format based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - ~16 bugs remain (MEDIUM/LOW — planned for v5.1.0)
 
 ---
+## [5.0.2] — 2026-04-11 (UI Polish)
 
+### Fixed
+- **Excessive tab padding** — Reduced `padx=20, pady=14` to `padx=12, pady=8` across all tab files 
+  (scanner.py, recon.py, exploit.py, ai_tabs.py, power.py, intel.py, results.py). Content now has 
+  proper margins without wasting screen real estate.
+- **CLI terminal too small** — Terminal widgets in vulnerability scanner, nuclei manager, and analysis tabs 
+  now properly fill available space using `fill="both", expand=True`. Terminals now occupy the full 
+  bottom half of the window, making scan output much more readable.
+- **Split layout consistency** — All recon tabs use unified split layout:
+  - **TOP section (fixed):** Section header + info card + controls + buttons
+  - **Accent separator line:** Visual divider between controls and terminal
+  - **BOTTOM section (expands):** Terminal fills remaining vertical space (400px+)
+
+### Enhanced
+- **Workspace efficiency** — More screen real estate for scan results and terminal output
+- **Output visibility** — Terminal now shows 30-40 lines of output instead of 2-3 lines
+- **Consistent spacing** — All tab padding now matches design system (12px horizontal, 8px vertical)
+
+---
 ## [5.0.2] — 2026-04-12
 
 ### Fixed
