@@ -26,6 +26,33 @@ Format based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ---
 
+## [5.0.2] — 2026-04-12
+
+### Fixed
+- **Sidebar tab height** — Root cause was `CTkFrame` without `pack_propagate(False)` — children
+  (CTkLabel with `expand=True`) were dictating the row height, producing large squares instead
+  of compact single-line items. Fix: added `height=_SB_ROW_H` (26px) + `row.pack_propagate(False)`
+  on every sidebar row frame. All labels now capped at 26px. Single constant `_SB_ROW_H` controls
+  all rows — change one number to resize sidebar.
+- **`invalid command name NNNupdate` / `check_dpi_scaling` terminal spam** — Previous fix
+  (`_StderrFilter`) intercepted Python-level stderr but not Tcl-level background errors.
+  Root fix: override Tcl's `bgerror` proc directly in the Tcl interpreter via
+  `self.root.tk.eval("proc bgerror ...")` — errors are now suppressed before they
+  ever reach Python or stderr. Terminal is fully clean.
+- **Logs/projects not syncing** — Added `sync_logs_to_projects()` to `database.py`.
+  Scans `logs/<project_name>/` directories at startup and auto-registers any missing
+  projects into SQLite. Called both synchronously before UI starts (`main.py`) and
+  asynchronously in a background thread after login (refreshes combo 800ms later).
+  All existing log folders now appear in the project dropdown automatically.
+
+### Changed
+- `_SB_ROW_H = 26` and `_SB_FONT = 11` constants at top of `app_window.py` —
+  single source of truth for sidebar sizing.
+- Status bar version string updated to `TCO v5.0.2`.
+- `[LOGOUT]` button now calls `_on_close()` (clean shutdown) instead of `root.destroy()`.
+
+---
+
 ## [5.0.1] — 2026-04-11
 
 ### Fixed (Hot-patch)

@@ -157,6 +157,40 @@ def delete_project(name: str):
     conn.execute("DELETE FROM projects WHERE name=?", (name,))
     conn.commit()
 
+
+def sync_logs_to_projects():
+    """
+    Scan logs/ folder on disk and auto-register any missing projects into DB.
+    This ensures every logs/<project_name>/ directory appears in the project list.
+    Called once at startup (in background thread) and available for manual refresh.
+    Returns list of newly added project names.
+    """
+    from pathlib import Path as _P
+    logs_dir = BASE_DIR / "logs"
+    if not logs_dir.exists():
+        return []
+
+    existing_names = {p["name"] for p in get_projects()}
+    added = []
+
+    for folder in sorted(logs_dir.iterdir()):
+        if not folder.is_dir():
+            continue
+        name = folder.name.strip()
+        if not name or name.startswith("."):
+            continue
+        if name in existing_names:
+            continue
+        # Guess target from folder name (strip common prefixes)
+        target = name if "." in name or ":" in name else name
+        try:
+            create_project(name, target=target)
+            added.append(name)
+        except Exception:
+            pass
+
+    return added
+
 # ── FINDINGS ─────────────────────────────────────────────────────
 def save_finding(finding: Dict) -> Dict:
     conn   = get_conn()

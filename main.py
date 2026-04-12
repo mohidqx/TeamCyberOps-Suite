@@ -50,8 +50,16 @@ if not os.environ.get("DISPLAY") and sys.platform != "win32":
 
 
 def main():
-    from app.core.database import init_db
+    from app.core.database import init_db, sync_logs_to_projects
     init_db()
+
+    # Sync any logs/<project>/ folders → DB before UI starts
+    try:
+        added = sync_logs_to_projects()
+        if added:
+            print(f"[*] Synced {len(added)} project(s) from logs/: {', '.join(added)}")
+    except Exception as _e:
+        print(f"[!] Log sync warning: {_e}")
 
     from app.ui.login import LoginWindow
     login = LoginWindow()

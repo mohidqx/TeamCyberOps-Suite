@@ -399,7 +399,7 @@ git clone https://github.com/projectdiscovery/nuclei-templates
 ## 📊 Stats
 
 ```JAVASCRIPT
-Version:          v5.0.1 (Production Ready)
+Version:          v5.0.2 (Production Ready)
 Lines of code:    17,400+
 Tabs:             61  (MAIN·RECON·SCAN·EXPLOIT·RESULTS·INTEL·AUTO·ADVANCED·POWER·AI·SYSTEM)
 POWER tabs:       16
