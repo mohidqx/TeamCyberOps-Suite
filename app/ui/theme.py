@@ -397,3 +397,33 @@ class Separator(ctk.CTkFrame):
              dict(width=1, fg_color=C["border_mid"], corner_radius=0))
         d.update(kw)
         super().__init__(parent, **d)
+
+
+def get_terminal_height(terminal_type="default"):
+    """Get terminal height from config. Auto-adjustable by user.
+    
+    Args:
+        terminal_type (str): Type of terminal ('default', 'vuln_scanner', etc.)
+    
+    Returns:
+        int: Terminal height in lines (between min_height and max_height)
+    """
+    try:
+        from app.core.config import cfg
+        term_config = cfg.get("terminal", {})
+        auto_adjust = term_config.get("auto_adjust", True)
+        
+        if not auto_adjust:
+            return term_config.get("default_height", 25)
+        
+        # Get specific height for terminal type
+        height_key = f"{terminal_type}_height"
+        height = term_config.get(height_key, term_config.get("default_height", 25))
+        
+        # Enforce min/max bounds
+        min_h = term_config.get("min_height", 15)
+        max_h = term_config.get("max_height", 35)
+        
+        return max(min_h, min(height, max_h))
+    except:
+        return 25  # Fallback to default

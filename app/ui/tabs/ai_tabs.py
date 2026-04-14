@@ -1,6 +1,6 @@
 """TeamCyberOps V5 — AI Tabs (Gemini-powered)"""
 import customtkinter as ctk, threading, json
-from app.ui.theme import C, F, Card, Section, NeonButton, FilledButton, GlowEntry, Terminal
+from app.ui.theme import C, F, Card, Section, NeonButton, FilledButton, GlowEntry, Terminal, get_terminal_height
 from app.core.database import load_findings, save_finding
 from app.core.config import cfg
 
@@ -158,8 +158,10 @@ class AIMixin:
         self._ae_combo = ctk.CTkComboBox(pg, variable=self._ae_finding, values=choices or ["No findings"], font=F(11, mono=True),
                                           width=600, height=34)
         self._ae_combo.pack(fill="x", padx=10)
-        self._ae_term_poc = Terminal(pg, height=16)
-        self._ae_term_poc.pack(fill="both", expand=True, padx=10, pady=(6,8))
+        sep_poc = ctk.CTkFrame(pg, height=2, fg_color=C["border"]); sep_poc.pack(fill="x", pady=(6,4))
+        poc_wrap = ctk.CTkFrame(pg, fg_color="transparent"); poc_wrap.pack(fill="both", expand=False)
+        self._ae_term_poc = Terminal(poc_wrap, height=get_terminal_height())
+        self._ae_term_poc.pack(fill="both", padx=10, pady=(4,8))
         def _gen_poc():
             sel = self._ae_finding.get()
             if not sel or "No findings" in sel: return
@@ -187,8 +189,12 @@ class AIMixin:
 
         # Chain Analyzer
         ca = nb.tab("🔗 Chain Analyzer")
-        self._ae_term_chain = Terminal(ca, height=20)
-        self._ae_term_chain.pack(fill="both", expand=True, padx=10, pady=8)
+        ch_label = ctk.CTkLabel(ca, text="🔀 Exploitation Chains:", font=F(10, bold=True), text_color=C["accent"])
+        ch_label.pack(fill="x", padx=10, pady=(8,4))
+        sep_chain = ctk.CTkFrame(ca, height=2, fg_color=C["border"]); sep_chain.pack(fill="x", pady=(4,4))
+        chain_wrap = ctk.CTkFrame(ca, fg_color="transparent"); chain_wrap.pack(fill="both", expand=False)
+        self._ae_term_chain = Terminal(chain_wrap, height=get_terminal_height())
+        self._ae_term_chain.pack(fill="both", padx=10, pady=(4,8))
         def _analyze_chains():
             proj  = self.project.get()
             finds = load_findings(project=proj if proj else None)
@@ -211,9 +217,13 @@ class AIMixin:
 
         # Bounty Estimator
         be = nb.tab("💰 Bounty Estimator")
-        self._ae_term_bounty = Terminal(be, height=20)
-        self._ae_term_bounty.pack(fill="both", expand=True, padx=10, pady=8)
-        r_be = ctk.CTkFrame(be); r_be.pack(fill="x", padx=10, pady=(0,4))
+        bh_label = ctk.CTkLabel(be, text="💰 Bounty-Worthy Issues:", font=F(10, bold=True), text_color=C["accent"])
+        bh_label.pack(fill="x", padx=10, pady=(8,4))
+        sep_bounty = ctk.CTkFrame(be, height=2, fg_color=C["border"]); sep_bounty.pack(fill="x", pady=(4,4))
+        bounty_wrap = ctk.CTkFrame(be, fg_color="transparent"); bounty_wrap.pack(fill="both", expand=False)
+        self._ae_term_bounty = Terminal(bounty_wrap, height=get_terminal_height())
+        self._ae_term_bounty.pack(fill="both", padx=10, pady=(4,8))
+        r_be = ctk.CTkFrame(be); r_be.pack(fill="x", padx=10, pady=(8,4))
         ctk.CTkLabel(r_be, text="Platform:", font=F(10,mono=True)).pack(side="left")
         self._ae_platform = ctk.StringVar(value="HackerOne")
         ctk.CTkComboBox(r_be, variable=self._ae_platform,
@@ -250,8 +260,10 @@ class AIMixin:
                      font=F(10,mono=True), width=160, anchor="e").pack(side="left", padx=(0,8))
         self._ae_atk_target = ctk.StringVar(value=f"https://{self.project.get()}" if self.project.get() else "")
         GlowEntry(r_atk, textvariable=self._ae_atk_target, width=380, height=32).pack(side="left")
-        self._ae_term_atk = Terminal(atk, height=18)
-        self._ae_term_atk.pack(fill="both", expand=True, padx=10, pady=(4,8))
+        sep_atk = ctk.CTkFrame(atk, height=2, fg_color=C["border"]); sep_atk.pack(fill="x", pady=(8,4))
+        atk_wrap = ctk.CTkFrame(atk, fg_color="transparent"); atk_wrap.pack(fill="both", expand=False)
+        self._ae_term_atk = Terminal(atk_wrap, height=get_terminal_height())
+        self._ae_term_atk.pack(fill="both", padx=10, pady=(4,8))
         def _suggest_attacks():
             target = self._ae_atk_target.get().strip()
             if not target: return

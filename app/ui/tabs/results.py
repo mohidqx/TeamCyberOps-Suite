@@ -3,7 +3,7 @@ import threading
 """TeamCyberOps V5 — Results, Reports, Live Monitor Tabs"""
 import customtkinter as ctk, threading, json
 from pathlib import Path
-from app.ui.theme import C, F, Card, Section, NeonButton, FilledButton, GlowEntry, Terminal
+from app.ui.theme import C, F, Card, Section, NeonButton, FilledButton, GlowEntry, Terminal, get_terminal_height
 from app.core.database import load_scan_results, get_finding_stats, load_findings
 from app.core.config import cfg
 from pathlib import Path as _Path
@@ -192,8 +192,9 @@ class ResultsMixin:
         ctk.CTkLabel(left, text="  LIVE LOG",
                      font=F(10, bold=True, mono=True), anchor="w").pack(anchor="w", padx=10, pady=(8,4))
         sep = ctk.CTkFrame(left, height=2, fg_color=C["border"]); sep.pack(fill="x", pady=(8,4))
-        self._lm_log = Terminal(left, height=25)
-        self._lm_log.pack(fill="both", expand=True, padx=8, pady=(0,8))
+        log_wrap = ctk.CTkFrame(left, fg_color="transparent"); log_wrap.pack(fill="both", expand=False)
+        self._lm_log = Terminal(log_wrap, height=get_terminal_height())
+        self._lm_log.pack(fill="both", padx=8, pady=(0,8))
 
         right = ctk.CTkFrame(pane, width=320)
         right.pack(side="right", fill="y"); right.pack_propagate(False)

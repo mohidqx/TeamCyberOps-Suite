@@ -362,9 +362,24 @@ class AppWindow:
 
     # ── CONTENT AREA ──────────────────────────────────────────────
     def _build_content(self, parent):
-        self._content = ctk.CTkFrame(parent, fg_color=C["bg_app"],
+        # Main split: tabs (top 65%) + terminal (bottom 35%)
+        content_container = ctk.CTkFrame(parent, fg_color=C["bg_app"],
+                                          border_width=0, corner_radius=0)
+        content_container.pack(side="left", fill="both", expand=True)
+        
+        # Tabs area (top)
+        self._content = ctk.CTkFrame(content_container, fg_color=C["bg_app"],
                                       border_width=0, corner_radius=0)
-        self._content.pack(side="left", fill="both", expand=True)
+        self._content.pack(side="top", fill="both", expand=True)
+        
+        # Terminal panel (bottom)
+        self._build_terminal_panel(content_container)
+    
+    def _build_terminal_panel(self, parent):
+        """Build integrated terminal panel at bottom of window."""
+        from app.ui.terminal import TerminalPanel
+        self._terminal = TerminalPanel(parent)
+        self._terminal.build(parent)
 
     # ── Navigation ────────────────────────────────────────────────
     def _switch_to(self, idx: int):

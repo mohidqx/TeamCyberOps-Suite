@@ -4,7 +4,7 @@ import threading
 """TeamCyberOps V5 — Settings, Wordlists, Tool Installer"""
 import customtkinter as ctk, threading, subprocess, shutil
 from pathlib import Path
-from app.ui.theme import Terminal, C, F, Card, Section, NeonButton, FilledButton, GlowEntry
+from app.ui.theme import Terminal, C, F, Card, Section, NeonButton, FilledButton, GlowEntry, get_terminal_height
 from app.core.config import cfg
 from app.core.database import set_config
 
@@ -234,8 +234,9 @@ class SettingsMixin:
 
         self._tool_status = {}
         sep = ctk.CTkFrame(scroll, height=2, fg_color=C["border"]); sep.pack(fill="x", pady=(8,4))
-        log_txt = Terminal(scroll, height=25)
-        log_txt.pack(fill="x", pady=(0,8))
+        log_wrap = ctk.CTkFrame(scroll, fg_color="transparent"); log_wrap.pack(fill="both", expand=False)
+        log_txt = Terminal(log_wrap, height=get_terminal_height())
+        log_txt.pack(fill="both", pady=(0,8))
 
         for name, check, install, desc in tools:
             installed = shutil.which(check) is not None

@@ -29,5 +29,12 @@
   "scan": {
     "threads": 50,
     "timeout": 10
+  },
+  "terminal": {
+    "default_height": 25,
+    "vuln_scanner_height": 28,
+    "auto_adjust": true,
+    "max_height": 35,
+    "min_height": 15
   }
 }

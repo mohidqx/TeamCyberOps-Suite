@@ -3,7 +3,7 @@ import customtkinter as ctk
 import threading
 import subprocess
 from pathlib import Path
-from app.ui.theme import C, F, Card, Section, NeonButton, FilledButton, GlowEntry, Terminal
+from app.ui.theme import C, F, Card, Section, NeonButton, FilledButton, GlowEntry, Terminal, get_terminal_height
 from app.core.database import save_finding
 from app.core.config import cfg
 
@@ -54,8 +54,9 @@ class ScannerMixin:
             self._vs_checks[key] = v
 
         sep = ctk.CTkFrame(pad, height=2, fg_color=C["border"]); sep.pack(fill="x", pady=(8,4))
-        self._vs_term = Terminal(pad, height=28)
-        self._vs_term.pack(fill="both", expand=True, pady=(10,0))
+        term_wrap = ctk.CTkFrame(pad, fg_color="transparent"); term_wrap.pack(fill="both", expand=False)
+        self._vs_term = Terminal(term_wrap, height=get_terminal_height("vuln_scanner"))
+        self._vs_term.pack(fill="both", padx=10, pady=(4,8))
 
         self._vs_stop = [False]
         btn_row = ctk.CTkFrame(pad, fg_color="transparent"); btn_row.pack(fill="x", pady=(8,0))
@@ -173,8 +174,8 @@ class ScannerMixin:
         GlowEntry(run_row, textvariable=self._nm_run_target, width=360, height=32).pack(side="left", padx=8)
 
         sep = ctk.CTkFrame(pad, height=2, fg_color=C["border"]); sep.pack(fill="x", pady=(8,4))
-        self._nm_term = Terminal(pad, height=25)
-        self._nm_term.pack(fill="both", expand=True, pady=(4,0))
+        self._nm_term = Terminal(pad, height=get_terminal_height())
+        self._nm_term.pack(fill="y", expand=True, pady=(4,0), padx=10)
 
     def _filter_nuclei_templates(self):
         if not hasattr(self, "_nm_scroll"): return
@@ -281,8 +282,9 @@ class ScannerMixin:
                            f"https://{self.project.get()}" if self.project.get() else "")
                        ).pack(side="left", padx=6)
             sep = ctk.CTkFrame(tf, height=2, fg_color=C["border"]); sep.pack(fill="x", pady=(8,4))
-            term = Terminal(tf, height=26)
-            term.pack(fill="both", expand=True, padx=10, pady=(0,8))
+            term_wrap = ctk.CTkFrame(tf, fg_color="transparent"); term_wrap.pack(fill="both", expand=False)
+            term = Terminal(term_wrap, height=get_terminal_height())
+            term.pack(fill="both", padx=10, pady=(0,8))
 
             def _make_runner(fn, vv, t):
                 def _run():
@@ -371,8 +373,9 @@ class ScannerMixin:
                         text_color=C["text"], font=F(11, mono=True)
                         ).pack(side="left", padx=8)
         sep = ctk.CTkFrame(nvd_tab, height=2, fg_color=C["border"]); sep.pack(fill="x", pady=(8,4))
-        self._nvd_term = Terminal(nvd_tab, height=26)
-        self._nvd_term.pack(fill="both", expand=True, padx=10, pady=(0,8))
+        term_wrap_nvd = ctk.CTkFrame(nvd_tab, fg_color="transparent"); term_wrap_nvd.pack(fill="both", expand=False)
+        self._nvd_term = Terminal(term_wrap_nvd, height=get_terminal_height())
+        self._nvd_term.pack(fill="both", padx=10, pady=(0,8))
 
         def _nvd_search():
             q = self._nvd_q.get().strip()
@@ -399,8 +402,9 @@ class ScannerMixin:
                   placeholder_text="Filter KEV... (e.g. Apache)",
                   width=360, height=32).pack(side="left")
         sep = ctk.CTkFrame(kev_tab, height=2, fg_color=C["border"]); sep.pack(fill="x", pady=(8,4))
-        self._kev_term = Terminal(kev_tab, height=26)
-        self._kev_term.pack(fill="both", expand=True, padx=10, pady=(0,8))
+        term_wrap_kev = ctk.CTkFrame(kev_tab, fg_color="transparent"); term_wrap_kev.pack(fill="both", expand=False)
+        self._kev_term = Terminal(term_wrap_kev, height=get_terminal_height())
+        self._kev_term.pack(fill="both", padx=10, pady=(0,8))
 
         def _kev_search():
             q = self._kev_q.get().strip()
@@ -427,8 +431,8 @@ class ScannerMixin:
         self._tech_q = ctk.StringVar(value="Apache, PHP, WordPress")
         GlowEntry(tech_row, textvariable=self._tech_q, width=360, height=32).pack(side="left", padx=8)
         sep = ctk.CTkFrame(tech_tab, height=2, fg_color=C["border"]); sep.pack(fill="x", pady=(8,4))
-        self._tech_term = Terminal(tech_tab, height=26)
-        self._tech_term.pack(fill="both", expand=True, padx=10, pady=(0,8))
+        self._tech_term = Terminal(tech_tab, height=get_terminal_height())
+        self._tech_term.pack(fill="y", expand=True, padx=10, pady=(0,8))
 
         def _tech_cves():
             techs = [t.strip() for t in self._tech_q.get().split(",") if t.strip()]
@@ -502,8 +506,8 @@ class ScannerMixin:
             self._mass_targets.insert("0.0", f"https://{self.project.get()}\n")
 
         sep = ctk.CTkFrame(pad, height=2, fg_color=C["border"]); sep.pack(fill="x", pady=(8,4))
-        self._mass_term = Terminal(pad, height=26)
-        self._mass_term.pack(fill="both", expand=True, pady=(8,0))
+        self._mass_term = Terminal(pad, height=get_terminal_height())
+        self._mass_term.pack(fill="y", expand=True, pady=(8,0), padx=10)
 
         def _run():
             targets = [l.strip() for l in self._mass_targets.get("0.0","end").splitlines() if l.strip()]
@@ -552,7 +556,7 @@ class ScannerMixin:
             GlowEntry(row, textvariable=v, width=width or 380, height=32).pack(side="left")
             vars_map[key] = v
         sep = ctk.CTkFrame(pad, height=2, fg_color=C["border"]); sep.pack(fill="x", pady=(8,4))
-        term = Terminal(pad, height=26); term.pack(fill="both", expand=True, pady=(4,8))
+        term = Terminal(pad, height=get_terminal_height()); term.pack(fill="y", expand=True, pady=(4,8), padx=10)
         btn_row = ctk.CTkFrame(pad, fg_color="transparent"); btn_row.pack(fill="x", pady=(8,0))
         stop_flag = [False]
 

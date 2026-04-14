@@ -3,7 +3,7 @@ import threading
 """TeamCyberOps V5 — Recon Tabs (Passive, Active, URL Discovery, Origin Hunter, Auto-Recon)"""
 import customtkinter as ctk, threading, os
 from pathlib import Path
-from app.ui.theme import C, F, Card, Section, NeonButton, FilledButton, GlowEntry, Terminal
+from app.ui.theme import C, F, Card, Section, NeonButton, FilledButton, GlowEntry, Terminal, get_terminal_height
 from app.core.database import save_scan_result, add_scan_history, finish_scan_history
 from app.core.config import cfg
 from pathlib import Path as _Path
@@ -69,11 +69,12 @@ class ReconMixin:
                      corner_radius=0).pack(fill="x")
 
         # ── BOT: Terminal fills rest of the window ──────────────────────
+        sep = ctk.CTkFrame(frame, height=2, fg_color=C["border"]); sep.pack(fill="x", pady=(4,4))
         term_wrap = ctk.CTkFrame(frame, fg_color="transparent", corner_radius=0)
-        term_wrap.pack(fill="both", expand=True, padx=12, pady=(4, 8))
+        term_wrap.pack(fill="x", expand=False, padx=12, pady=(4, 8))
 
-        term = Terminal(term_wrap)
-        term.pack(fill="both", expand=True)
+        term = Terminal(term_wrap, height=get_terminal_height())
+        term.pack(fill="both")
 
         # Wire buttons
         stop_flag = [False]
@@ -143,14 +144,14 @@ class ReconMixin:
 
         # Tabview fills remaining space
         tab_wrap = ctk.CTkFrame(frame, fg_color="transparent", corner_radius=0)
-        tab_wrap.pack(fill="both", expand=True, padx=20, pady=(6, 12))
+        tab_wrap.pack(fill="y", expand=True, padx=20, pady=(6, 12))
 
         nb = ctk.CTkTabview(tab_wrap,
                              segmented_button_fg_color=C["bg_input"],
                              segmented_button_selected_color=C["bg_selected"],
                              segmented_button_selected_hover_color=C["bg_hover"],
                              segmented_button_unselected_color=C["bg_input"])
-        nb.pack(fill="both", expand=True)
+        nb.pack(fill="y", expand=True)
         for t in ["Port Scan","HTTP Probe","Dir Fuzz","Tech Detect","WAF Detect"]:
             nb.add(t)
 
@@ -192,12 +193,12 @@ class ReconMixin:
         btn_row = ctk.CTkFrame(parent, fg_color="transparent")
         btn_row.pack(fill="x", padx=10, pady=(4, 4))
 
-        ctk.CTkFrame(parent, height=1, fg_color=C["border_mid"],
-                     corner_radius=0).pack(fill="x", padx=10)
+        ctk.CTkFrame(parent, height=2, fg_color=C["border"],
+                     corner_radius=0).pack(fill="x", padx=10, pady=(4,4))
 
         # Terminal fills remaining space
-        term = Terminal(parent)
-        term.pack(fill="both", expand=True, padx=10, pady=(6, 6))
+        term = Terminal(parent, height=get_terminal_height())
+        term.pack(fill="y", expand=True, padx=10, pady=(4, 8))
 
         def _run():
             term.clear()
@@ -286,13 +287,13 @@ class ReconMixin:
                      corner_radius=0).pack(fill="x")
 
         tab_wrap = ctk.CTkFrame(frame, fg_color="transparent", corner_radius=0)
-        tab_wrap.pack(fill="both", expand=True, padx=20, pady=(6, 12))
+        tab_wrap.pack(fill="y", expand=True, padx=20, pady=(6, 12))
 
         nb = ctk.CTkTabview(tab_wrap,
                              segmented_button_fg_color=C["bg_input"],
                              segmented_button_selected_color=C["bg_selected"],
                              segmented_button_unselected_color=C["bg_input"])
-        nb.pack(fill="both", expand=True)
+        nb.pack(fill="y", expand=True)
         for t in ["WAF Detection","Subdomain Resolve","Origin Hunt","SSL Cert"]:
             nb.add(t)
 
@@ -408,15 +409,13 @@ class ReconMixin:
                    command=lambda v=None: self._ar_stop.__setitem__(0, True)).pack(side="left", padx=8)
 
         # ── Separator ──────────────────────────────────────────────────
-        ctk.CTkFrame(frame, height=1, fg_color=C["border_accent"],
-                     corner_radius=0).pack(fill="x")
-
-        # ── Terminal — fills the entire bottom half ────────────────────
-        term_wrap = ctk.CTkFrame(frame, fg_color="transparent", corner_radius=0)
-        term_wrap.pack(fill="both", expand=True, padx=20, pady=(6, 12))
-
-        self._ar_term = Terminal(term_wrap)
-        self._ar_term.pack(fill="both", expand=True)
+        sep = ctk.CTkFrame(frame, height=2, fg_color=C["border"]); sep.pack(fill="x", pady=(8,4))
+        
+        # ── Terminal — centered at bottom ────────────────────────────
+        term_wrap = ctk.CTkFrame(frame, fg_color="transparent")
+        term_wrap.pack(fill="both", expand=False, padx=20, pady=(4,12))
+        self._ar_term = Terminal(term_wrap, height=get_terminal_height())
+        self._ar_term.pack(fill="both", padx=10, pady=(4,8))
 
     def _run_auto_recon(self):
         target = self._ar_target.get().strip()
@@ -569,11 +568,10 @@ class ReconMixin:
                      color=C["yellow"]).pack(side="left", ipady=4)
 
         # ── Separator ──────────────────────────────────────────────
-        ctk.CTkFrame(frame, height=1, fg_color=C["border_accent"],
-                     corner_radius=0).pack(fill="x")
-
-        # ── Terminal fills bottom half ──────────────────────────────
-        term_wrap = ctk.CTkFrame(frame, fg_color="transparent", corner_radius=0)
-        term_wrap.pack(fill="both", expand=True, padx=20, pady=(6, 12))
-        self._dork_term = Terminal(term_wrap)
-        self._dork_term.pack(fill="both", expand=True)
+        sep = ctk.CTkFrame(frame, height=2, fg_color=C["border"]); sep.pack(fill="x", pady=(8,4))
+        
+        # ── Terminal fills bottom half — centered ───────────────────
+        term_wrap = ctk.CTkFrame(frame, fg_color="transparent")
+        term_wrap.pack(fill="both", expand=False, padx=20, pady=(4,12))
+        self._dork_term = Terminal(term_wrap, height=get_terminal_height())
+        self._dork_term.pack(fill="both", padx=10, pady=(4,8))

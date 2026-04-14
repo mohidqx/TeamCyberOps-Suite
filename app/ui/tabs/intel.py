@@ -3,7 +3,7 @@ import threading
 """TeamCyberOps V5 — Intel Tabs (OSINT, S3, TKO, Param Mining, Cred Stuffing, JWT WL, SAST, API Tester)"""
 import customtkinter as ctk, threading, os
 from pathlib import Path
-from app.ui.theme import C, F, Card, Section, NeonButton, FilledButton, GlowEntry, Terminal
+from app.ui.theme import C, F, Card, Section, NeonButton, FilledButton, GlowEntry, Terminal, get_terminal_height
 from app.core.database import save_finding
 from app.core.config import cfg
 from pathlib import Path as _Path
@@ -18,7 +18,7 @@ class IntelMixin:
         pad = ctk.CTkScrollableFrame(frame,
                                       scrollbar_button_color=C["bg_hover"],
                                       scrollbar_button_hover_color=C["accent"])
-        pad.pack(fill="both", expand=True, padx=12, pady=8)
+        pad.pack(fill="y", expand=True, padx=12, pady=8)
         Section(pad, title, icon, color or C["purple"]).pack(fill="x", pady=(0,10))
         info = Card(pad, accent=color or C["purple"]); info.pack(fill="x", pady=(0,12))
         ctk.CTkLabel(info, text=desc, font=F(10),
@@ -34,7 +34,8 @@ class IntelMixin:
                 NeonButton(row, text="← Project", small=True, color=C["text_dim"],
                            command=lambda vv=v: vv.set(self.project.get() or "")).pack(side="left", padx=6)
             vars_map[key] = v
-        term = Terminal(pad, height=18); term.pack(fill="both", expand=True, pady=(10,0))
+        sep = ctk.CTkFrame(pad, height=2, fg_color=C["border"]); sep.pack(fill="x", pady=(8,4))
+        term = Terminal(pad, height=get_terminal_height()); term.pack(fill="y", expand=True, pady=(4,8))
         btn_row = ctk.CTkFrame(pad); btn_row.pack(fill="x", pady=(8,0))
         stop = [False]
         def _run():
@@ -94,7 +95,7 @@ class IntelMixin:
         pad = ctk.CTkScrollableFrame(frame,
                                       scrollbar_button_color=C["bg_hover"],
                                       scrollbar_button_hover_color=C["accent"])
-        pad.pack(fill="both", expand=True, padx=20, pady=14)
+        pad.pack(fill="y", expand=True, padx=20, pady=14)
         Section(pad, "SUBDOMAIN TAKEOVER CHECKER", "🏴", C["red"]).pack(fill="x", pady=(0,10))
         info = Card(pad, accent=C["red"]); info.pack(fill="x", pady=(0,10))
         ctk.CTkLabel(info, text=(
@@ -112,8 +113,10 @@ class IntelMixin:
         NeonButton(row, text="← Project", small=True, color=C["text_dim"],
                    command=self._load_tko_from_project).pack(side="left", padx=4)
 
-        self._tko_term = Terminal(pad, height=18)
-        self._tko_term.pack(fill="both", expand=True, pady=(10,0))
+        sep = ctk.CTkFrame(pad, height=2, fg_color=C["border"]); sep.pack(fill="x", pady=(8,4))
+        term_wrap = ctk.CTkFrame(pad, fg_color="transparent"); term_wrap.pack(fill="both", expand=False)
+        self._tko_term = Terminal(term_wrap, height=get_terminal_height())
+        self._tko_term.pack(fill="both", pady=(10,0))
 
         def _run():
             fp = self._tko_file.get().strip()
@@ -220,7 +223,7 @@ class IntelMixin:
         pad = ctk.CTkScrollableFrame(frame,
                                       scrollbar_button_color=C["bg_hover"],
                                       scrollbar_button_hover_color=C["accent"])
-        pad.pack(fill="both", expand=True, padx=20, pady=14)
+        pad.pack(fill="y", expand=True, padx=20, pady=14)
         Section(pad, "JWT SECRET WORDLIST BRUTE-FORCER", "🔐", C["yellow"]).pack(fill="x", pady=(0,10))
         info = Card(pad, accent=C["yellow"]); info.pack(fill="x", pady=(0,10))
         ctk.CTkLabel(info, text=(
@@ -235,8 +238,10 @@ class IntelMixin:
         self._jwt_wl_token = ctk.StringVar()
         GlowEntry(row, textvariable=self._jwt_wl_token, width=500, height=32).pack(side="left", fill="x", expand=True)
 
-        self._jwt_wl_term = Terminal(pad, height=18)
-        self._jwt_wl_term.pack(fill="both", expand=True, pady=(10,0))
+        sep = ctk.CTkFrame(pad, height=2, fg_color=C["border"]); sep.pack(fill="x", pady=(8,4))
+        term_wrap = ctk.CTkFrame(pad, fg_color="transparent"); term_wrap.pack(fill="both", expand=False)
+        self._jwt_wl_term = Terminal(term_wrap, height=get_terminal_height())
+        self._jwt_wl_term.pack(fill="both", pady=(10,0))
 
         def _run():
             token = self._jwt_wl_token.get().strip()
@@ -269,14 +274,14 @@ class IntelMixin:
         pad = ctk.CTkScrollableFrame(frame,
                                       scrollbar_button_color=C["bg_hover"],
                                       scrollbar_button_hover_color=C["accent"])
-        pad.pack(fill="both", expand=True, padx=20, pady=14)
+        pad.pack(fill="y", expand=True, padx=20, pady=14)
         Section(pad, "SOURCE CODE SAST SCANNER", "📝", C["purple"]).pack(fill="x", pady=(0,10))
 
         nb = ctk.CTkTabview(pad,
                              segmented_button_fg_color=C["bg_input"],
                              segmented_button_selected_color=C["bg_selected"],
                              segmented_button_unselected_color=C["bg_input"])
-        nb.pack(fill="both", expand=True)
+        nb.pack(fill="y", expand=True)
         nb.add("📝 Paste Code"); nb.add("🐙 GitHub Repo")
 
         # Paste Code
@@ -290,8 +295,10 @@ class IntelMixin:
         ctk.CTkLabel(fn_row, text="Filename:", font=F(10, mono=True)).pack(side="left")
         self._sast_fn = ctk.StringVar(value="pasted_code.py")
         GlowEntry(fn_row, textvariable=self._sast_fn, width=220, height=30).pack(side="left", padx=8)
-        self._sast_term1 = Terminal(pc, height=12)
-        self._sast_term1.pack(fill="both", expand=True, padx=10, pady=(6,8))
+        sep1 = ctk.CTkFrame(pc, height=2, fg_color=C["border"]); sep1.pack(fill="x", pady=(8,4), padx=10)
+        term_wrap = ctk.CTkFrame(pc, fg_color="transparent"); term_wrap.pack(fill="both", expand=True)
+        self._sast_term1 = Terminal(term_wrap, height=get_terminal_height())
+        self._sast_term1.pack(fill="y", expand=True, padx=10, pady=(6,8))
         def _run_paste():
             code = self._sast_code.get("0.0","end")
             if not code.strip(): return
@@ -313,8 +320,10 @@ class IntelMixin:
                      font=F(10, mono=True), width=140, anchor="e").pack(side="left", padx=(0,8))
         self._sast_token = ctk.StringVar(value=cfg.get_api_key("github_token"))
         GlowEntry(r2, textvariable=self._sast_token, show="●", width=380, height=32).pack(side="left")
-        self._sast_term2 = Terminal(gh, height=16)
-        self._sast_term2.pack(fill="both", expand=True, padx=10, pady=(6,8))
+        sep2 = ctk.CTkFrame(gh, height=2, fg_color=C["border"]); sep2.pack(fill="x", pady=(8,4), padx=10)
+        term_wrap = ctk.CTkFrame(gh, fg_color="transparent"); term_wrap.pack(fill="both", expand=True)
+        self._sast_term2 = Terminal(term_wrap, height=get_terminal_height())
+        self._sast_term2.pack(fill="y", expand=True, padx=10, pady=(6,8))
         def _run_repo():
             repo = self._sast_repo.get().strip()
             if not repo: return
@@ -346,7 +355,7 @@ class IntelMixin:
         pad = ctk.CTkScrollableFrame(frame,
                                       scrollbar_button_color=C["bg_hover"],
                                       scrollbar_button_hover_color=C["accent"])
-        pad.pack(fill="both", expand=True, padx=20, pady=14)
+        pad.pack(fill="y", expand=True, padx=20, pady=14)
         Section(pad, "API SECURITY TESTER — Swagger / OpenAPI", "🔗", C["accent"]).pack(fill="x", pady=(0,10))
         info = Card(pad, accent=C["accent"]); info.pack(fill="x", pady=(0,10))
         ctk.CTkLabel(info, text=(
@@ -380,9 +389,10 @@ class IntelMixin:
                                                        scrollbar_button_hover_color=C["accent"])
         self._api_ep_scroll.pack(fill="x")
         self._api_spec = None
-
-        self._api_term = Terminal(pad, height=12)
-        self._api_term.pack(fill="both", expand=True, pady=(8,0))
+        sep_api = ctk.CTkFrame(pad, height=2, fg_color=C["border"]); sep_api.pack(fill="x", pady=(8,4))
+        term_wrap = ctk.CTkFrame(pad, fg_color="transparent"); term_wrap.pack(fill="both", expand=True)
+        self._api_term = Terminal(term_wrap, height=get_terminal_height())
+        self._api_term.pack(fill="y", expand=True, pady=(8,0))
 
         def _load():
             url = self._api_sw_url.get().strip()

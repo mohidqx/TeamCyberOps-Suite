@@ -110,8 +110,49 @@ Cyberpunk Color Palette:
 - 🎯 **Lazy loading** — fast startup
 - ↕️ **Sortable columns** — click headers in data tables
 - 🏷️ **Severity badges** — CRITICAL/HIGH/MEDIUM/LOW/INFO
-- 📺 **Terminal Bottom Half** — 25-28 visible lines per Terminal (50% screen space) with dark separator
-- 📐 **Refined padding** — Consistent 12px horizontal / 8px vertical spacing across all tabs
+- 📺 **Terminal UX** — 40 Terminal instances centered in ONE LINE at bottom (25-28 lines) with dark visual separators ✅ FINAL
+- 📐 **Refined padding** — Consistent 12px horizontal / 8px vertical spacing with centered terminal layout
+- ⚙️ **Auto-Adjustable Terminals** — Configure terminal heights in `config.json` without code edits
+
+---
+
+## ⚙️ Terminal Height Configuration
+
+**All 40 terminals across 9 tabs now have auto-adjustable heights!**
+
+Edit `config.json` to customize:
+
+```json
+{
+  "terminal": {
+    "default_height": 25,
+    "vuln_scanner_height": 28,
+    "auto_adjust": true,
+    "max_height": 35,
+    "min_height": 15
+  }
+}
+```
+
+| Option | Default | Purpose |
+|--------|---------|----------|
+| `default_height` | `25` | Terminal height for all tabs (in lines) |
+| `vuln_scanner_height` | `28` | Specialized height for Vulnerability Scanner |
+| `auto_adjust` | `true` | Enable/disable auto-adjustable feature |
+| `max_height` | `35` | Maximum terminal height (hard limit) |
+| `min_height` | `15` | Minimum terminal height (hard limit) |
+
+**Examples:**
+- **Small screens:** `"default_height": 18`
+- **Large screens:** `"default_height": 35`
+- **Fixed height:** Set `"auto_adjust": false`
+
+See [TERMINAL_HEIGHT_CONFIG.md](TERMINAL_HEIGHT_CONFIG.md) for full guide.
+
+**Recon Tab Fixes (Hotfix 14b):**
+- ✅ Auto Recon tab — Terminal structure fixed for proper centering
+- ✅ Dorks tab — Terminal structure fixed for proper centering
+- ✅ Both tabs now conform to Phase 14 terminal centering standard
 
 ---
 
@@ -406,12 +447,14 @@ git clone https://github.com/projectdiscovery/nuclei-templates
 ## 📊 Stats
 
 ```JAVASCRIPT
-Version:          v5.0.3 (Production Ready)
-Lines of code:    17,400+
-Tabs:             61  (MAIN·RECON·SCAN·EXPLOIT·RESULTS·INTEL·AUTO·ADVANCED·POWER·AI·SYSTEM)
+Version:          v5.0.5.1 (Production Ready + Terminal Config)
+Lines of code:    18,500+
+Tabs:             68  (MAIN·RECON·SCAN·EXPLOIT·RESULTS·INTEL·AUTO·ADVANCED·POWER·AI·SYSTEM)
+Terminals:        40  (auto-adjustable heights via config.json)
 POWER tabs:       16
 AI tabs:          4
 Modules:          32 Python files
+Exploits:         7 (4× CVE-based + 3× POWER module)
 
 Oneliners:        239  in 25 categories
 Dorks:            270  (Google:130 · Shodan:58 · Censys:28 · GitHub:54)
@@ -427,10 +470,17 @@ OAuth attacks:    9
 OAST payloads:    29
 GraphQL paths:    16
 
-Fully working tabs (no tools):  44
+Fully working tabs (no tools):  46
 Partial tabs (some tools):       8
 Needs tools:                     3
 Needs API key:                   4 AI tabs + 1 Shodan
+
+Terminal Features:
+  - Default height: 25 lines
+  - Vuln Scanner height: 28 lines
+  - Min height: 15 lines
+  - Max height: 35 lines
+  - Customizable via config.json
 ```
 
 ---

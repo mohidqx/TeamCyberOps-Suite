@@ -1,7 +1,7 @@
 import threading
 """TeamCyberOps V5 — Power Tabs (OAST, JWT, Race, GraphQL, SSRF, 2FA, Smuggling, Web Scanners)"""
 import customtkinter as ctk, threading
-from app.ui.theme import C, F, Card, Section, NeonButton, FilledButton, GlowEntry, Terminal
+from app.ui.theme import C, F, Card, Section, NeonButton, FilledButton, GlowEntry, Terminal, get_terminal_height
 from app.core.database import save_finding
 from app.core.config import cfg
 
@@ -15,7 +15,7 @@ class PowerMixin:
         pad = ctk.CTkScrollableFrame(frame,
                                       scrollbar_button_color=C["bg_hover"],
                                       scrollbar_button_hover_color=C["accent"])
-        pad.pack(fill="both", expand=True, padx=12, pady=8)
+        pad.pack(fill="y", expand=True, padx=12, pady=8)
         Section(pad, title, icon, color or C["red"]).pack(fill="x", pady=(0,10))
         info = Card(pad, accent=color or C["red"])
         info.pack(fill="x", pady=(0,12))
@@ -35,8 +35,9 @@ class PowerMixin:
                     side="left", padx=6)
             vars_map[key] = v
         sep = ctk.CTkFrame(pad, height=2, fg_color=C["border"]); sep.pack(fill="x", pady=(8,4))
-        term = Terminal(pad, height=25)
-        term.pack(fill="both", expand=True, pady=(10,0))
+        term_wrap = ctk.CTkFrame(pad, fg_color="transparent"); term_wrap.pack(fill="both", expand=False)
+        term = Terminal(term_wrap, height=get_terminal_height())
+        term.pack(fill="both", pady=(10,0))
         btn_row = ctk.CTkFrame(pad); btn_row.pack(fill="x", pady=(8,0))
         stop_flag = [False]
         def _run():
@@ -59,7 +60,7 @@ class PowerMixin:
         pad = ctk.CTkScrollableFrame(frame,
                                       scrollbar_button_color=C["bg_hover"],
                                       scrollbar_button_hover_color=C["accent"])
-        pad.pack(fill="both", expand=True, padx=12, pady=8)
+        pad.pack(fill="y", expand=True, padx=12, pady=8)
         Section(pad, "OAST SERVER — Out-of-Band Testing", "📡", C["accent"]).pack(fill="x", pady=(0,10))
 
         info = Card(pad, accent=C["accent"]); info.pack(fill="x", pady=(0,10))
@@ -101,8 +102,9 @@ class PowerMixin:
                                     self.set_status("OAST URL copied!",C["green"]))).pack(side="left")
 
         sep = ctk.CTkFrame(pad, height=2, fg_color=C["border"]); sep.pack(fill="x", pady=(8,4))
-        self._oast_term = Terminal(pad, height=25)
-        self._oast_term.pack(fill="both", expand=True, pady=(0,8))
+        term_wrap = ctk.CTkFrame(pad, fg_color="transparent"); term_wrap.pack(fill="both", expand=True)
+        self._oast_term = Terminal(term_wrap, height=get_terminal_height())
+        self._oast_term.pack(fill="y", expand=True, pady=(0,8))
 
         def _log(m, t="info"):
             self._oast_term.log(m, t)
@@ -162,14 +164,14 @@ class PowerMixin:
         pad = ctk.CTkScrollableFrame(frame,
                                       scrollbar_button_color=C["bg_hover"],
                                       scrollbar_button_hover_color=C["accent"])
-        pad.pack(fill="both", expand=True, padx=20, pady=14)
+        pad.pack(fill="y", expand=True, padx=20, pady=14)
         Section(pad, "JWT / OAUTH SECURITY", "🔐", C["yellow"]).pack(fill="x", pady=(0,10))
 
         nb = ctk.CTkTabview(pad,
                              segmented_button_fg_color=C["bg_input"],
                              segmented_button_selected_color=C["bg_selected"],
                              segmented_button_unselected_color=C["bg_input"])
-        nb.pack(fill="both", expand=True)
+        nb.pack(fill="y", expand=True)
         for t in ["JWT Analyzer","JWT Attacks","OAuth Detect","OAuth ATO"]:
             nb.add(t)
 
@@ -181,8 +183,8 @@ class PowerMixin:
                                           font=F(10,mono=True))
         self._jwt_input.pack(fill="x", padx=10, pady=(0,6))
         sep = ctk.CTkFrame(ja, height=2, fg_color=C["border"]); sep.pack(fill="x", pady=(8,4))
-        self._jwt_term = Terminal(ja, height=25)
-        self._jwt_term.pack(fill="both", expand=True, padx=10, pady=(0,8))
+        self._jwt_term = Terminal(ja, height=get_terminal_height())
+        self._jwt_term.pack(fill="y", expand=True, padx=10, pady=(0,8))
         def _analyze_jwt():
             token = self._jwt_input.get("0.0","end").strip()
             if not token: return
@@ -208,8 +210,8 @@ class PowerMixin:
                                            font=F(10,mono=True))
         self._jatk_input.pack(fill="x", padx=10)
         sep = ctk.CTkFrame(jatk, height=2, fg_color=C["border"]); sep.pack(fill="x", pady=(8,4))
-        self._jatk_term = Terminal(jatk, height=25)
-        self._jatk_term.pack(fill="both", expand=True, padx=10, pady=(6,8))
+        self._jatk_term = Terminal(jatk, height=get_terminal_height())
+        self._jatk_term.pack(fill="y", expand=True, padx=10, pady=(6,8))
         for atk_name, atk_fn, color in [
             ("alg=none",   "attack_alg_none",    C["red"]),
             ("Brute Secret","brute_force_secret", C["yellow"]),
@@ -244,8 +246,8 @@ class PowerMixin:
                                       font=F(10,mono=True))
             o_input.pack(fill="x", padx=10)
             o_term_sep = ctk.CTkFrame(ot, height=2, fg_color=C["border"]); o_term_sep.pack(fill="x", pady=(8,4))
-            o_term = Terminal(ot, height=25)
-            o_term.pack(fill="both", expand=True, padx=10, pady=(6,8))
+            o_term = Terminal(ot, height=get_terminal_height())
+            o_term.pack(fill="y", expand=True, padx=10, pady=(6,8))
             def _run_oauth(inp=o_input, t=o_term, fn=fn_name):
                 url = inp.get("0.0","end").strip()
                 if not url: return
@@ -368,7 +370,7 @@ class PowerMixin:
         pad = ctk.CTkScrollableFrame(frame,
                                       scrollbar_button_color=C["bg_hover"],
                                       scrollbar_button_hover_color=C["accent"])
-        pad.pack(fill="both", expand=True, padx=12, pady=8)
+        pad.pack(fill="y", expand=True, padx=12, pady=8)
         Section(pad, "HTTP REQUEST SMUGGLING", "🔀", C["red"]).pack(fill="x", pady=(0,10))
 
         info = Card(pad, accent=C["red"]); info.pack(fill="x", pady=(0,10))
@@ -395,8 +397,9 @@ class PowerMixin:
                         font=F(11)).pack(side="left", padx=12)
 
         sep = ctk.CTkFrame(pad, height=2, fg_color=C["border"]); sep.pack(fill="x", pady=(8,4))
-        self._smug_term = Terminal(pad, height=25)
-        self._smug_term.pack(fill="both", expand=True, pady=(10,0))
+        term_wrap_smug = ctk.CTkFrame(pad, fg_color="transparent"); term_wrap_smug.pack(fill="both", expand=True)
+        self._smug_term = Terminal(term_wrap_smug, height=get_terminal_height())
+        self._smug_term.pack(fill="y", expand=True, pady=(10,0))
 
         def _run_builtin():
             host = self._smug_host.get().strip()
@@ -557,7 +560,7 @@ class PowerMixin:
         pad = ctk.CTkScrollableFrame(frame, fg_color="transparent", border_width=0,
                                       scrollbar_button_color=C["bg_hover"],
                                       scrollbar_button_hover_color=C["accent"])
-        pad.pack(fill="both", expand=True, padx=12, pady=8)
+        pad.pack(fill="y", expand=True, padx=12, pady=8)
         Section(pad, "OAUTH ACCOUNT TAKEOVER AUTO-TESTER", "🔗", C["purple"]).pack(fill="x", pady=(0,10))
         info = Card(pad, accent=C["purple"]); info.pack(fill="x", pady=(0,10))
         ctk.CTkLabel(info, text=(
@@ -575,8 +578,9 @@ class PowerMixin:
         oauth_txt.insert("0.0","https://auth.example.com/oauth/authorize?client_id=APP_ID&redirect_uri=https://app.com/callback&response_type=code&scope=openid+email&state=RANDOM_STATE")
 
         sep = ctk.CTkFrame(pad, height=2, fg_color=C["border"]); sep.pack(fill="x", pady=(8,4))
-        term = Terminal(pad, height=25)
-        term.pack(fill="both", expand=True, pady=(0,8))
+        term_wrap_oauth = ctk.CTkFrame(pad, fg_color="transparent"); term_wrap_oauth.pack(fill="both", expand=True)
+        term = Terminal(term_wrap_oauth, height=get_terminal_height())
+        term.pack(fill="y", expand=True, pady=(0,8))
 
         attack_url_scroll = ctk.CTkScrollableFrame(pad, fg_color=C["bg_panel"],
                                                     border_color=C["border_mid"], border_width=1,
