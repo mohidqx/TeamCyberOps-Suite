@@ -565,7 +565,7 @@ PHASE 6 — SUBMIT
     <td align="center">
       <a href="https://github.com/rehan-qx">
         <img src="https://github.com/rehan-qx.png" width="100px;" style="border-radius:50%; border: 3px solid #000000;"/><br/>
-        <sub><b>n1xr00t</b></sub><br/>
+        <sub><b>N1xR00t</b></sub><br/>
         <img src="https://img.shields.io/badge/Elite_Bug_Hunter-050810?style=flat-square&color=000000">
       </a>
     </td>
